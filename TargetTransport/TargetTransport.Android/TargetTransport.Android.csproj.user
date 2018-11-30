@@ -4,5 +4,6 @@
     <SelectedDevice>AVD_GalaxyNexus_ToolsForApacheCordova</SelectedDevice>
     <DefaultDevice>AVD_GalaxyNexus_ToolsForApacheCordova</DefaultDevice>
     <ProjectView>ShowAllFiles</ProjectView>
+    <AndroidDesignerPreferredTheme>Theme.DeviceDefault.NoActionBar.Fullscreen</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

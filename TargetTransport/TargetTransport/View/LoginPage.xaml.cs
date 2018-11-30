@@ -100,6 +100,14 @@ namespace TargetTransport.View
                                         await App.NavigationPage.PopToRootAsync(false);
                                         await Navigation.PopAllPopupAsync();
                                         break;
+
+                                     case "Driver Manager":
+                                        var otherPage4 = new Driver_NavigationPage();
+                                        var homePage4 = App.NavigationPage.Navigation.NavigationStack.First();
+                                        App.NavigationPage.Navigation.InsertPageBefore(otherPage4, homePage4);
+                                        await App.NavigationPage.PopToRootAsync(false);
+                                        await Navigation.PopAllPopupAsync();
+                                        break;
                                     case "Non-Driver":
                                         var otherPage1 = new NonDriver_NavigationPage();
                                         var homePage1 = App.NavigationPage.Navigation.NavigationStack.First();
@@ -121,7 +129,11 @@ namespace TargetTransport.View
                                         await App.NavigationPage.PopToRootAsync(false);
                                         await Navigation.PopAllPopupAsync();
                                         break;
+
                                 }
+
+
+
                             }
                             else
                             {
