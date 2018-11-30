@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"                 
+             x:Class="TargetTransport.LoadingPopPage">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#9cdaf1"/>
+                <Setter Property="TextColor" Value="#7dbbe6"/>
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <ScrollView
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
+        <AbsoluteLayout>
+            <Frame
+        x:Name="FrameContainer"        
+        HorizontalOptions="Center"
+        BackgroundColor="White">
+                <StackLayout Orientation="Vertical">
+                    <ActivityIndicator x:Name="LoaderIndicator"                                      
+                                       Color="Black"
+                                       HeightRequest="30"
+                                       IsRunning="True"
+                                       WidthRequest="30" 
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                    <Label Text="Please Wait..."
+                           VerticalOptions="End" 
+                           TextColor="Black"                                
+                           HorizontalOptions="Center" 
+                           VerticalTextAlignment="End" 
+                           HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+            <ContentView
+          AbsoluteLayout.LayoutFlags="PositionProportional"
+          AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
+            </ContentView>
+        </AbsoluteLayout>
+    </ScrollView>
+</pages:PopupPage>

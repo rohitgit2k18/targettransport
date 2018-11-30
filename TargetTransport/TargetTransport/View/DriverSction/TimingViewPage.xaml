@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.TimingViewPage"
+              xmlns:local="clr-namespace:TargetTransport.Converters;assembly=TargetTransport"
+               BackgroundImage="bg.jpg">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IntToStringConverter x:Key="IntToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout" Margin="10,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="-10,0,-10,0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="Btnback" NumberOfTapsRequired="1" Tapped="Btnback_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Label Text="WORKSHEETS" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Grid>
+            <!--<ScrollView Grid.Row="1">-->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.6*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" >
+                        <Frame HasShadow="true"  CornerRadius="5" >
+                            <Grid BackgroundColor="White" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="date1" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                <Label x:Name="lblWSDate" VerticalOptions="Center" TextColor="#2E6FBA" Text="{Binding WorkSheetDate, StringFormat='Date : {0}'}"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Frame HasShadow="true" Padding="0,-15,0,0" CornerRadius="5"  >
+                            <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Image VerticalOptions="Center" HorizontalOptions="Center" Source="view_load1" />
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Label VerticalOptions="Center" Text="View Load" FontAttributes="Bold" TextColor="#2E6FBA" FontSize="Small"/>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <ListView  x:Name="listLoads" RowHeight="50" ItemSelected="listLoads_ItemSelected" HasUnevenRows="True" SeparatorColor="LightGray">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell Height="60">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                    <Grid  Grid.Column="0" Margin="20,0,0,0">
+                                                        <Image x:Name="imgProfielPic"                              
+                               HorizontalOptions="Center"                                     
+                                Aspect="AspectFill" 
+                                       HeightRequest="60"
+                                       WidthRequest="50"
+                               VerticalOptions="Center"                             
+                               Source="load_type.png"/>
+                                                    </Grid>
+                                                    <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                                                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
+                                                            <Label x:Name="lblLoadNmename"                                 
+                                   HorizontalTextAlignment="Start"
+                                           FontAttributes="Bold"
+                                           FontSize="Medium"
+                                           TextColor="#3782BB"
+                                   Text="{Binding LoadId,Converter={StaticResource Key=IntToStringConverter},StringFormat='Load :{0:F2}'}"/>
+                                                            <StackLayout Orientation="Horizontal" >
+                                                                <Label x:Name="lblfrom"                                                                   
+                                           TextColor="Gray"
+                                   Text="{Binding LoadFrom}"/>
+                                                                <Label x:Name="lblto"                                 
+                                 
+                                           TextColor="Gray"
+                                   Text="to"/>
+                                                                <Label x:Name="lbl1from"                                                                    
+                                           TextColor="Gray"
+                                   Text="{Binding DeliverTo}"/>
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+                                                    </Grid>
+                                                    <Grid Grid.Column="2">
+                                                        <Image VerticalOptions="Center" Aspect="AspectFit" HorizontalOptions="Center" Margin="0,0,20,0" Source="right_arrow_grey.png">
+                                                            <!--<Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="ListItemTapped" CommandParameter="{Binding .}"/>
+                                                            </Image.GestureRecognizers>-->
+                                                        </Image>
+                                                    </Grid>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Frame HasShadow="true" CornerRadius="5">
+                            <Grid BackgroundColor="White" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="start_time1" />
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                <Label VerticalOptions="Center" TextColor="#2E6FBA" Text="{Binding ProgrammedStartTime, StringFormat='Program Start Time: {0}'}"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Frame HasShadow="true"  CornerRadius="5" >
+                            <Grid BackgroundColor="White" ColumnSpacing="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="finish_time1"/>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                <Label VerticalOptions="Center" TextColor="#2E6FBA" Text="{Binding OffSiteFinishTime,StringFormat='Offsite Finish Time: {0}'}"/>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Button VerticalOptions="Center" 
+                                x:Name="btnSubmitdailyList" 
+                                HorizontalOptions="Center"
+                                BackgroundColor="#F3822D"
+                                Text="Submit" 
+                                WidthRequest="150"
+                                Clicked="btnSubmitdailyList_Clicked"
+                                TextColor="White"/>
+                    </Grid>
+                </Grid>
+            <!--</ScrollView>-->
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

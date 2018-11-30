@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.Driver_HomePage"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             BackgroundImage="bg_2.png">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout" Margin="10" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="1.4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Start" HorizontalOptions="Start" Margin="05,05,0,0" Source="menu.png"/>
+                    <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                          Tapped="imgHamburger_Click"
+                       NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="logo.png"/>
+                    
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Image VerticalOptions="Start" HorizontalOptions="End" Source="notification.png"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0">
+                    <controls:CircleImage Source="{Binding ProfileImage}" Margin="0,0,-80,0"  x:Name="imgProfile" BorderColor="White" BorderThickness="4"   Aspect="AspectFill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">150</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">150</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                    </controls:CircleImage>
+                </Grid>
+                <Grid Grid.Column="1" Grid.Row="0">
+                    <StackLayout Orientation="Horizontal" x:Name="StackEditBtn" HorizontalOptions="EndAndExpand" >
+                        <Image VerticalOptions="Center" Source="edit.png" Margin="0,0,0,40"/>
+                        <Label Text="Edit" VerticalOptions="Center" TextColor="#3877BD"  Margin="0,0,0,40"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="StackEditBtn_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Name}" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Large"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Image Source="email_2.png" VerticalOptions="Center"/>
+                            <Label Text="{Binding Email}" VerticalOptions="Center"/>
+                            <Label Text="|" VerticalOptions="Center" TextColor="Black" FontSize="Small" Margin="05,0,05,0"/>
+                            <Image Source="phone.png" VerticalOptions="Center"/>
+                            <Label Text="{Binding PhoneNo}" FontSize="Small" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            
+            <Grid Grid.Row="2" BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                   <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Image VerticalOptions="StartAndExpand" Source="icon_1.png" HorizontalOptions="Center"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgWorkSheet_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Image VerticalOptions="StartAndExpand" Source="icon_2.png" HorizontalOptions="Center"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgTimeSheet_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Image VerticalOptions="StartAndExpand" Source="icon_3.png" HorizontalOptions="Center"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgMaintanance_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Label Text="Worksheet" VerticalOptions="Start" HorizontalOptions="Center" TextColor="Black" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Label Text="Timesheet" VerticalOptions="Start" HorizontalOptions="Center" TextColor="Black" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Label Text="Maintenance" VerticalOptions="Start" HorizontalOptions="Center" TextColor="Black"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

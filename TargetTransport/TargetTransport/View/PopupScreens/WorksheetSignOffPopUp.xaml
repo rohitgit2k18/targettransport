@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+                 xmlns:signature="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             x:Class="TargetTransport.WorksheetSignOffPopUp">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#9cdaf1"/>
+                <Setter Property="TextColor" Value="#7dbbe6"/>
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <ScrollView
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
+        <AbsoluteLayout>
+            <Frame
+        x:Name="FrameContainer"        
+        HorizontalOptions="Center"                       
+        BackgroundColor="White">
+
+                <Grid Padding="-20,-20,-20,-20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" BackgroundColor="#2E6FBA" HorizontalOptions="FillAndExpand" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image VerticalOptions="Center" HorizontalOptions="End" 
+                                   Aspect="AspectFit" Source="customer_signature.png"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Label VerticalOptions="Center" Margin="-50,0,0,0" HorizontalOptions="Center"
+                                   Text="Customer Signature" TextColor="White" 
+                                   FontSize="Medium"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Padding="10,0,10,0">
+                        <Entry x:Name="custName" VerticalOptions="Center" Placeholder="Customer Name"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Grid>
+                    <Grid Grid.Row="2"  Padding="10,0,10,0">
+                        <signature:SignaturePadView x:Name="padView"                           
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                BackgroundColor="White"
+                                CaptionText="Customer Signature" CaptionTextColor="Gray"
+                                ClearText="Clear Me!" ClearTextColor="Red"
+                                PromptText="Sign Here" PromptTextColor="Red"
+                                SignatureLineColor="Aqua" StrokeColor="Black" StrokeWidth="2" />
+                    </Grid>
+                    <Grid Grid.Row="3"  Padding="20,0,20,0">
+                        <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" 
+                                 BackgroundColor="Gray" Color="Gray"/>
+                    </Grid>
+                    <Grid Grid.Row="4"  Padding="20,0,20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackLayout Orientation="Horizontal">
+                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                                               
+                                OnImg="ck1.png"
+                                OffImg="ck2.png"  />
+                                <Label Text="Sign off all loads" VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="0">
+                                <Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" 
+                                        Text="Skip" FontSize="Medium" TextColor="#2E6FBA" />
+                                <!--<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" 
+                                         BackgroundColor="#2E6FBA"/>-->
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="5" Padding="20,0,20,0">
+                        <Button Text="done" 
+                                    x:Name="btnSubmit"  
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Center" 
+                                    BorderRadius="5"
+                                TextColor="White"
+                                    BackgroundColor="#F07430"
+                                    Clicked="btnSubmit_Clicked"/>
+                    </Grid>
+                </Grid>
+                <!--<StackLayout Orientation="Vertical">
+                    <Label Text="New PIN"                         
+                           TextColor="#1E6792"  
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" 
+                           VerticalTextAlignment="End" 
+                           HorizontalTextAlignment="Center"/>
+                    <Entry x:Name="txtPin" 
+                                   Placeholder=" Enter PIN"
+                                       VerticalOptions="Center"
+                                        TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                                         FontSize="Medium"
+                                       HorizontalOptions="FillAndExpand"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Submit" x:Name="btnSubmit" BackgroundColor="#1E6792" Clicked="btnSubmit_Clicked"/>
+                        <Button Text="Cancel" x:Name="btnCancel" BackgroundColor="#E53935" Clicked="btnCancel_Clicked"/>
+                    </StackLayout>
+                </StackLayout>-->
+            </Frame>
+            <ContentView
+          AbsoluteLayout.LayoutFlags="PositionProportional"
+          AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
+            </ContentView>
+        </AbsoluteLayout>
+    </ScrollView>
+</pages:PopupPage>

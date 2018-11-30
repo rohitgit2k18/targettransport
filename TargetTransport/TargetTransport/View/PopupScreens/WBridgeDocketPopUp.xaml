@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="TargetTransport.WBridgeDocketPopUp">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#9cdaf1"/>
+                <Setter Property="TextColor" Value="#7dbbe6"/>
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <ScrollView
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
+        <AbsoluteLayout>
+            <Frame
+        x:Name="FrameContainer"        
+        HorizontalOptions="Center"
+        BackgroundColor="White"
+                Margin="10"
+                Padding="-20,-20,-20,-20"
+               >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" BackgroundColor="#2E6FBA" >
+                        <Image VerticalOptions="Center" HorizontalOptions="Center" Aspect="AspectFit"  Source="caution.png"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#2E6FBA"
+                               FontSize="Medium"
+                               Text="Do you want to go without Uploading the documents?"/>
+                    </Grid>
+                    <Grid Grid.Row="2" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button Text="YES" 
+                                    x:Name="btnSubmit"  
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Center" 
+                                    BorderRadius="5"
+                                    BackgroundColor="#F07430"
+                                    Clicked="btnSubmit_Clicked"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Text="NO" 
+                                    x:Name="btnCancel" 
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Center" 
+                                    BorderRadius="5"
+                                    BackgroundColor="#2E6FBA"
+                                    Clicked="btnCancel_Clicked"/>
+                        </Grid>
+                            
+                    </Grid>
+                </Grid>
+                <!--<StackLayout Orientation="Vertical">
+                    <Label Text="New PIN"                         
+                           TextColor="#1E6792"  
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" 
+                           VerticalTextAlignment="End" 
+                           HorizontalTextAlignment="Center"/>
+                    <Entry x:Name="txtPin" 
+                                   Placeholder=" Enter PIN"
+                                       VerticalOptions="Center"
+                                        TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                                         FontSize="Medium"
+                                       HorizontalOptions="FillAndExpand"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Submit" x:Name="btnSubmit" BackgroundColor="#1E6792" Clicked="btnSubmit_Clicked"/>
+                        <Button Text="Cancel" x:Name="btnCancel" BackgroundColor="#E53935" Clicked="btnCancel_Clicked"/>
+                    </StackLayout>
+                </StackLayout>-->
+            </Frame>
+            <ContentView
+          AbsoluteLayout.LayoutFlags="PositionProportional"
+          AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
+            </ContentView>
+        </AbsoluteLayout>
+    </ScrollView>
+</pages:PopupPage>

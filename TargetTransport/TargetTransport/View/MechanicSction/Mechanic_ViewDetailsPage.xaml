@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+              xmlns:RBcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             x:Class="TargetTransport.View.MechanicSction.Mechanic_ViewDetailsPage"
+              BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"  BackgroundColor="#206FC5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Start" HorizontalOptions="Start" Margin="15,15,0,0" Source="back.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="Back_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label Text="VIEW DETAILS" 
+                           VerticalOptions="Center" 
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="White"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <!--<Image VerticalOptions="Start" Margin="10,10,15,0" HorizontalOptions="End" Source="notification.png"/>-->
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Frame HasShadow="true"  BackgroundColor="White" CornerRadius="5"  Margin="15,0,15,0">
+                        <Grid x:Name="GridDetails">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label HorizontalOptions="Start" Text="Vehicle Name:" TextColor="Gray" FontSize="Small"/>
+                                        <Label HorizontalOptions="Start"  Text="{Binding VechicleName}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label HorizontalOptions="Start" Text="Rego #:" TextColor="Gray" FontSize="Small"/>
+                                        <Label HorizontalOptions="Start"  Text="{Binding Rego}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label HorizontalOptions="Start" Text="Location:" TextColor="Gray" FontSize="Small"/>
+                                        <Label HorizontalOptions="Start"  Text="{Binding Location}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label HorizontalOptions="Start" Text="Fault:" TextColor="Gray" FontSize="Small"/>
+                                        <Label HorizontalOptions="Start"  Text="{Binding Fault}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </Grid>
+                <Grid Grid.Row="1" Margin="15,0,15,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" BackgroundColor="#FF7817" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Image VerticalOptions="Center" HorizontalOptions="Center" Source="calender_white.png"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Label  
+                                       Text="Media"     
+                                        TextColor="White"
+                                       FontSize="Medium"
+                                        HorizontalOptions="Start"
+                                       VerticalOptions="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Frame HasShadow="true"  CornerRadius="5">
+                            <Grid>
+                                <flv:FlowListView FlowColumnCount="2" RowHeight="30"  SeparatorVisibility="None" x:Name="sepListView" HasUnevenRows="True" >
+                                    <flv:FlowListView.FlowColumnTemplate>
+                                        <DataTemplate>
+
+                                            <StackLayout Orientation="Horizontal" >
+                                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                 
+                                 Text="{Binding ChecklistName}"
+                                OnImg="checkbox_ticked.png"
+                                OffImg="checkbox.png"  />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </flv:FlowListView.FlowColumnTemplate>
+                                </flv:FlowListView>
+
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" ColumnSpacing="1" BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Button VerticalOptions="Center" 
+                                x:Name="BtnStartWork" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Text="Start"    
+                                Clicked="BtnStartWork_Clicked"
+                                TextColor="White"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button VerticalOptions="Center" 
+                                x:Name="BtnLater" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Clicked="BtnLater_Clicked"
+                                Text="Later"                                
+                                TextColor="White"/>
+                </Grid>
+                
+            </Grid>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

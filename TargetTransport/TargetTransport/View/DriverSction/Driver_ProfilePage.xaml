@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.Driver_ProfilePage"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             BackgroundImage="bg_2.png">
+    <ContentPage.Content>
+
+        <Grid x:Name="RootLayout" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="-10,-10,-10,0" BackgroundColor="#206FC5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Start" HorizontalOptions="Start" Margin="15,15,0,0" Source="menu_side.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgHamburger_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label Text="PROFILE" 
+                           VerticalOptions="Center" 
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="White"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Image VerticalOptions="Start" Margin="10,10,15,0" HorizontalOptions="End" Source="notification.png"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                    <controls:CircleImage Source="dri.jpg" Margin="0,0,0,0"  x:Name="imgProfile" BorderColor="White" BorderThickness="4"   Aspect="AspectFill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                        <controls:CircleImage.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">150</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.WidthRequest>
+                        <controls:CircleImage.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS">150</On>
+                                <On Platform="WinPhone">75</On>
+                            </OnPlatform>
+                        </controls:CircleImage.HeightRequest>
+                    </controls:CircleImage>
+                </Grid>
+                <Grid Grid.Column="1" Grid.Row="0">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" >
+                        <Image VerticalOptions="Center" Source="edit.png" Margin="0,0,0,40"/>
+                        <Label Text="Edit" VerticalOptions="Center" TextColor="#3877BD"  Margin="0,0,0,40"/>
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Start">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Jody Wisternoff" x:Name="TxtUserName" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="Large"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Image Source="email_2.png" VerticalOptions="Center"/>
+                            <Label Text="jody@gmail.com"  x:Name="UserEmail" VerticalOptions="Center"/>
+                            <Label Text="|" VerticalOptions="Center" TextColor="Black" Margin="05,0,05,0"/>
+                            <Image Source="phone.png" VerticalOptions="Center"/>
+                            <Label Text="(800)1234-567" x:Name="UserMobileNo" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" BackgroundColor="White" Padding="0,05,0,0" Margin="0,0,0,-10">
+                <StackLayout  Margin="10,0,10,0" Orientation="Vertical" Spacing="5"> 
+                    <Label Text="Change Password"                                                    
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center" 
+                           FontSize="Medium"
+                           FontAttributes="Bold"                         
+                           TextColor="#206FC5"/>
+                    
+                    <BoxView BackgroundColor="LightGray"                            
+                             HeightRequest="1"
+                             HorizontalOptions="FillAndExpand"/>
+                    <Entry 
+                         x:Name="TxtCurrentPassword"                      
+                           HorizontalOptions="FillAndExpand" 
+                           Placeholder="Current Password" 
+                         IsPassword="True"
+                        Text="{Binding OldPassword}"
+                           HorizontalTextAlignment="Center"/>
+                    <Entry 
+                        x:Name="TxtNewPassword"                    
+                           HorizontalOptions="FillAndExpand"                      
+                           Placeholder="New Password" 
+                         IsPassword="True"
+                        Text="{Binding NewPassword}"
+                           HorizontalTextAlignment="Center"/>
+                    <Entry 
+                        x:Name="TxtConfirmPassword"                                             
+                        HorizontalOptions="FillAndExpand" 
+                         IsPassword="True"
+                        Text="{Binding ConfirmNewPassword}"
+                        Placeholder="Confirm Password"  
+                        HorizontalTextAlignment="Center"/>
+                    
+                    <Button 
+                                x:Name="BtnSubmitNewPassword" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Text="Submit" 
+                            HeightRequest="40"
+                            Clicked="BtnSubmitNewPassword_Clicked"
+                                TextColor="White"/>
+                </StackLayout>
+               
+                <!--<Grid Grid.Row="2" Margin="0,10,0,0">
+                   
+                    --><!--<Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgTimeSheet_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>--><!--
+                </Grid>
+                <Grid Grid.Row="3">
+                    
+                    --><!--<Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgMaintanance_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>--><!--
+                </Grid>
+                <Grid Grid.Row="4">
+                    
+                </Grid>
+                <Grid Grid.Row="5" >
+                   
+                </Grid>-->
+                <!--<Grid Grid.Row="5">
+                    <Label Text="Maintenance" VerticalOptions="Start" HorizontalOptions="Center" TextColor="Black"/>
+                </Grid>-->
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

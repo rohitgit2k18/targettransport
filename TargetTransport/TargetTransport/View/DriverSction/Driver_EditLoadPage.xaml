@@ -1,0 +1,896 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.Driver_EditLoadPage"
+              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             xmlns:TTcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+              BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="BackButtonTapprd"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Label Text="EDIT LOAD" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Margin="15,0,15,0">
+                <Button 
+                    x:Name="btnLoadViewDetailsSubmit"
+                         VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand" 
+                        Text="Done"
+                        BorderColor="#F07430" 
+                        BackgroundColor="#F07430"   
+                    Clicked="btnLoadViewDetailsSubmit_Clicked"
+                        TextColor="White"/>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <Frame HasShadow="true"   BackgroundColor="White"  Margin="15,5,15,5">
+                    <Grid RowSpacing="0" BackgroundColor="#767676">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" BackgroundColor="White">
+                            <TTcontrols:TwoImagePicker TextColor="Gray"  
+                                                       x:Name="dropdownLoadType"
+                           Image="load_type"   
+                           Image1="drop_down"
+                            Title="Load Type"    
+                            ImageAlignment="Left"
+                           ImageHeight="30"   
+                             ImageHeight1="20"
+                            ImageWidth1="20"
+                           ImageWidth="30"   
+                          
+                           LineColor="Gray"
+                            ItemDisplayBinding="{Binding Type}"
+                          SelectedIndexChanged="dropdownLoadType_SelectedIndexChanged"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="1" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="load_from"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Load From" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding LoadFrom ,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="2" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="deliver_to"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Deliver To" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding DeliverTo,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+                        <Grid Grid.Row="3" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="w_bridge_docket"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Bridge Docket" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                          Text="{Binding BridgeDocket,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="4" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="weight"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="weight" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding NetWeight,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="5" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kms"  
+                            x:Name="kmstxtbx"
+                         PlaceholderColor="Gray"
+                          Placeholder="KM's" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding KiloMeters,Mode=TwoWay}"                                                                                                                                          
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="6" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="StartDepot"
+                                Image="start_depot"
+                                ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                Unfocused="OnUnfocused"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="False"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray" 
+                                                   x:Name="entryStartDepot"
+                           Image="start_depot"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Start Depot" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                        Focused="ImageEntry_Focused"
+                         Text="{Binding StartDeport,Mode=TwoWay}"                           
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="7" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                 x:Name="depart_depot"
+                                Image="depart_depot"
+                                 ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"                                           
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                HorizontalOptions="FillAndExpand"
+                                 Unfocused="depart_depot_Unfocused"
+                                 IsVisible="False"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="depart_depot"    
+                            x:Name="EntryDepartDeport"
+                         PlaceholderColor="Gray"
+                          Placeholder="Depart Depot" 
+                         ImageHeight="30"   
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Text="{Binding DepartDeport,Mode=TwoWay}"  
+                           Focused="EntryDepartDeport_Focused"
+                        HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+
+
+                        <Grid Grid.Row="8" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="claim_minutes"  
+                            x:Name="claim_minutes"
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Time Claim Minutes" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Text="{Binding WaitTimePerMinute,Mode=TwoWay}"                              
+                        HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+
+
+                        <Grid Grid.Row="9" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="arrive_job"
+                                Image="arrive_job"
+                                 ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                Unfocused="arrive_job_Unfocused"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="False"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="arrive_job" 
+                          x:Name="Entryarrive_job"
+                         PlaceholderColor="Gray"
+                          Placeholder="Arrive Job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Focused="Entryarrive_job_Focused"
+                           Text="{Binding ArriveJob,Mode=TwoWay}"                          
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="10" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                 x:Name="depart_job"
+                                Image="depart_job"
+                                 ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                HorizontalOptions="FillAndExpand"
+                                Unfocused="depart_job_Unfocused"
+                                IsVisible="False"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="depart_job"   
+                             x:Name="Entrydepart_job"
+                         PlaceholderColor="Gray"
+                          Placeholder="Depart Job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                            Focused="Entrydepart_job_Focused"
+                            Text="{Binding DepartJob, Mode=TwoWay}"  
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="11" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="claim_minutes" 
+                           x:Name="claim_minutes1"
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Time Claim Minutes job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                          Text="{Binding WaitTimePerMinuteJob,Mode=TwoWay}"                         
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="12" BackgroundColor="White">
+                            <TTcontrols:TwoImagePicker TextColor="Gray" 
+                                                        x:Name="dropdownTolls"
+                           Image="tolls"   
+                           Image1="drop_down"
+                            Title="Tolls"    
+                            ImageAlignment="Left"
+                           ImageHeight="30"   
+                             ImageHeight1="20"
+                            ImageWidth1="20"
+                           ImageWidth="30"                                                         
+                           LineColor="Gray"
+                           ItemDisplayBinding="{Binding TollPoint}"
+                           SelectedIndexChanged="dropdownTolls_SelectedIndexChanged"                            
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="13" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="kilometer_start"
+                                Image="kilometer_start"
+                                 ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                IsVisible="False"
+                                Unfocused="kilometer_start_Unfocused"
+                                HorizontalOptions="FillAndExpand"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kilometer_start"   
+                           x:Name="Entrykilometer_start"
+                         PlaceholderColor="Gray"
+                          Placeholder="Kilometer Start" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                            Text="{Binding Start,Mode=TwoWay}"   
+                           Focused="Entrykilometer_start_Focused"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="14" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="kilometer_finish"
+                                Image="kilometer_finish"
+                                 ImageHeight="30"
+                                ImageWidth="30"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                IsVisible="False"
+                                Unfocused="kilometer_finish_Unfocused"
+                                HorizontalOptions="FillAndExpand"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kilometer_finish"                        
+                         PlaceholderColor="Gray"
+                          x:Name="Entrykilometer_finish"
+                          Placeholder="Kilometer Finish" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Focused="Entrykilometer_finish_Focused"
+                            Text="{Binding Finish,Mode=TwoWay}"                           
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+                        <Grid Grid.Row="15" BackgroundColor="White">
+                            <TTcontrols:ImageDatePicker    
+                                x:Name="LoaddatePicker"
+                           Image="select_date"                                                 
+                         ImageHeight="30"   
+                                TextColor="Gray"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                                Date="{Binding LoadingDate,Mode=TwoWay}"
+                       Unfocused="LoaddatePicker_Unfocused"
+                                IsVisible="False"
+                        HorizontalOptions="FillAndExpand"/>
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="select_date"   
+                            x:Name="Entryselect_date"
+                         PlaceholderColor="Gray"                          
+                          Placeholder="Select date" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"  
+                           Focused="Entryselect_date_Focused"
+                            Text="{Binding LoadingDate,Mode=TwoWay}"                           
+                        HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+
+                        <Grid Grid.Row="16" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                                                                       
+                         PlaceholderColor="Gray"
+                          Placeholder="Comments"                          
+                           LineColor="Gray"
+                            Text="{Binding Comments,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="17" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                ShowLabel="True"                                                               
+                                OnImg="ck1.png"
+                                OffImg="ck2.png"  />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Copy this for a new Load?" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+                        <!--<Grid Grid.Row="0" BackgroundColor="White">
+                            <TTcontrols:TwoImagePicker TextColor="Gray"  
+                                                       x:Name="dropdownLoadType"
+                           Image="load_type"   
+                           Image1="drop_down"
+                            Title="Load Type"    
+                            ImageAlignment="Left"
+                           ImageHeight="30"   
+                             ImageHeight1="20"
+                            ImageWidth1="20"
+                           ImageWidth="30"   
+                           LineColor="Gray"
+                             SelectedIndex="{Binding JobType,Mode=TwoWay}"
+                             SelectedIndexChanged="dropdownLoadType_SelectedIndexChanged"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="load_type.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Load Type" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="1" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="load_from"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Load From" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding LoadFrom,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="load_from.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Load From" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="2" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="deliver_to"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Deliver To" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding DeliverTo,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="deliver_to.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Deliver To" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+                        <Grid Grid.Row="3" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="w_bridge_docket"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Bridge Docket" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                          Text="{Binding BridgeDocket,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="w_bridge_docket.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="W'Bridge Docket" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="4" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="weight"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="weight" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding NetWeight,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="weight.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="weight" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="5" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kms"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="KM's" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                          Text="{Binding KiloMeters,Mode=TwoWay}"                                   
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kms.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="KM's" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="6" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="start_depot"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Start Depot" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Text="{Binding StartDeport,Mode=TwoWay}"                           
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="start_depot.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Start Depot" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="7" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="depart_depot"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Depart Depot" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Text="{Binding DepartDeport,Mode=TwoWay}"                              
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="depart_depot.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Depart Depot" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="8" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="claim_minutes"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Time Claim Minutes" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                         Text="{Binding WaitTimePerMinute,Mode=TwoWay}"                              
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="claim_minutes.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="W'Time Claim Minutes" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="9" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="arrive_job"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Arrive Job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                           Text="{Binding ArriveJob,Mode=TwoWay}"                          
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="arrive_job.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Arrive Job" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="10" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="depart_job"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Depart Job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                            Text="{Binding DepartJob,Mode=TwoWay}"  
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="depart_job.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Depart Job" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="11" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="claim_minutes"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Time Claim Minutes job" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                          Text="{Binding WaitTimePerMinuteJob,Mode=TwoWay}"                         
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="claim_minutes.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="W'Time Claim Minutes" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="12" BackgroundColor="White">
+                            <TTcontrols:TwoImagePicker TextColor="Gray" 
+                                                        x:Name="dropdownTolls"
+                           Image="tolls"   
+                           Image1="drop_down"
+                            Title="Tolls"    
+                            ImageAlignment="Left"
+                           ImageHeight="30"   
+                             ImageHeight1="20"
+                            ImageWidth1="20"
+                           ImageWidth="30"   
+                           LineColor="Gray"
+                                                       SelectedIndex="{Binding TollId,Mode=TwoWay}"
+                           SelectedIndexChanged="dropdownTolls_SelectedIndexChanged"                            
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="tolls.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Tolls" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="13" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kilometer_start"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Kilometer Start" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                            Text="{Binding Start,Mode=TwoWay}"                         
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kilometer_start.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Kilometer Start" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="14" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="kilometer_finish"                        
+                         PlaceholderColor="Gray"
+                          Placeholder="Kilometer Finish" 
+                         ImageHeight="30"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                            Text="{Binding Finish,Mode=TwoWay}"                           
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kilometer_finish.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Kilometer Finish" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+                        <Grid Grid.Row="15" BackgroundColor="White">
+                            <TTcontrols:ImageDatePicker    
+                                x:Name="LoaddatePicker"
+                           Image="select_date"                                                 
+                         ImageHeight="30"   
+                                TextColor="Gray"
+                          ImageWidth="30"   
+                           LineColor="Gray"
+                                Date="{Binding LoadingDate,Mode=TwoWay}"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kilometer_finish.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Kilometer Finish" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>--><!--
+                        </Grid>
+
+                        <Grid Grid.Row="16" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                                                                       
+                         PlaceholderColor="Gray"
+                          Placeholder="Comments"                          
+                           LineColor="Gray"
+                        HorizontalOptions="FillAndExpand"/>
+                            --><!--<Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label Text="Comments" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+
+                            </Grid>--><!--
+                        </Grid>
+
+
+                        <Grid Grid.Row="17" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                ShowLabel="True"                                                               
+                                OnImg="ck1.png"
+                                OffImg="ck2.png"  />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Copy this for a new Load?" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>-->
+                    </Grid>
+                </Frame>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

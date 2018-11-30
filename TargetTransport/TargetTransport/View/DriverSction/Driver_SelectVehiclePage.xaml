@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             x:Class="TargetTransport.View.DriverSction.Driver_SelectVehiclePage"
+               xmlns:labs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"             
+             BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="0.20*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" x:Name="BtnBack" Tapped="BtnBack_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1" Grid.ColumnSpan="2" >
+                    <Label Text="CHOOSE VEHICLE" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+                <Grid Grid.Column="2" >
+                    <Image VerticalOptions="Center" 
+                           HorizontalOptions="Center"                          
+                           Source="search.png"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,0,15,0">
+                <Button VerticalOptions="Center"
+                        HorizontalOptions="EndAndExpand" 
+                        Text="Done"
+                        BorderColor="#2E6FBA" 
+                        BackgroundColor="#2E6FBA" 
+                        TextColor="White"/>
+            </Grid>
+            <Grid Grid.Row="2">
+            <ListView  x:Name="SelectVehicleList"  HasUnevenRows="True"  SeparatorColor="Transparent" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120"/>
+                                </Grid.RowDefinitions>
+                                <Frame HasShadow="true" CornerRadius="5" Grid.Row="0" BackgroundColor="White"  Margin="15,5,15,5">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                                <labs:CheckBox Checked="False" VerticalOptions="Center"
+                                                               CheckedChanged="CheckBox_CheckedChanged"                                                               
+                                                                DefaultText="{Binding VehicleTypeName}"/>
+                                                <!--<ctrls:CheckBox 
+                                 x:Name="chkbxVehicle"
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"  
+                               Text="{Binding VehicleTypeName}"
+                               OnImg="checkbox_ticked.png"
+                                OffImg="checkbox.png"
+                                CheckChanged="chkbxVehicle_CheckChanged"/>-->
+                                        </Grid>
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                                <Label Text="Rego #" 
+                                       TextColor="Black" 
+                                       FontSize="Medium"                                        
+                                       VerticalOptions="Center" />
+                                                <Label Text="|" 
+                                       TextColor="Black" 
+                                       FontSize="Medium"                                        
+                                       VerticalOptions="Center" />
+                                       <Label Text="{Binding Rego}" 
+                                       TextColor="Black" 
+                                       FontSize="Medium"                                        
+                                       VerticalOptions="Center" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </Grid>
+            <Grid Grid.Row="3" Margin="15,5,15,5">
+                <Button VerticalOptions="Center" 
+                                x:Name="btnSubmitdailyList" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Text="Done"  
+                             Clicked="btnSubmitdailyList_Clicked"
+                                TextColor="White"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.MechanicSction.Mechanic_RequestDonePage"
+              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+              xmlns:RBcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+              BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+            <Grid x:Name="RootLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"  BackgroundColor="#206FC5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Image VerticalOptions="Start" HorizontalOptions="Start" Margin="15,15,0,0" Source="menu_side.png"/>
+                        <!--<Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgHamburger_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>-->
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Label Text="REQUEST DONE" 
+                           VerticalOptions="Center" 
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="White"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Image VerticalOptions="Start" Margin="10,10,15,0" HorizontalOptions="End" Source="notification.png"/>
+                    </Grid>
+                </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackLayout Orientation="Horizontal" >
+                        <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                                               
+                                OnImg="select_all.png"
+                                OffImg="unselected.png"  />
+                        <Label Text="Select All" TextColor="#2E6FBA" FontSize="Small" VerticalOptions="Center" />
+                    </StackLayout>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Frame HasShadow="True" CornerRadius="10" BackgroundColor="White">
+                        <Grid>
+                            <flv:FlowListView FlowColumnCount="2" RowHeight="30"  SeparatorVisibility="None" x:Name="sepListView" HasUnevenRows="True" >
+                                <flv:FlowListView.FlowColumnTemplate>
+                                    <DataTemplate>
+
+                                        <StackLayout Orientation="Horizontal" >
+                                            <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                 
+                                 Text="{Binding ChecklistName}"
+                                  CheckChanged="CheckBox_CheckChanged"
+                                OnImg="checkbox_ticked.png"
+                                OffImg="checkbox.png"  />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </flv:FlowListView.FlowColumnTemplate>
+                            </flv:FlowListView>
+                        </Grid>
+                    </Frame>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Frame HasShadow="True" CornerRadius="10" BackgroundColor="White">
+                        <ctrls:Border  CornerRadius="2" BackgroundColor="LightGray" Padding="1,1,1,1">
+                            <Entry x:Name="txtComments" Placeholder="Comments(Optional)" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+                        </ctrls:Border>
+                    </Frame>
+                </Grid>
+                <Frame Grid.Row="3" HasShadow="True" CornerRadius="10" BackgroundColor="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackLayout Orientation="Vertical" Spacing="5">
+                            <Label Text="Upload Pictures" HorizontalOptions="Start" TextColor="Gray" FontSize="Medium"/>
+                            <Button 
+                                x:Name="btnSubmitImg"                                
+                                BackgroundColor="#F3822D"
+                                Text="Upload" 
+                                HorizontalOptions="Start" WidthRequest="100"
+                                HeightRequest="40"
+                               Clicked="btnSubmitImg_Clicked"
+                                TextColor="White"/>
+                        </StackLayout> 
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" x:Name="Image1"/> 
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Image VerticalOptions="Center" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" x:Name="Image2"/>
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <Image VerticalOptions="Center" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" x:Name="Image3"/>
+                            </Grid>
+                        </Grid>
+                </Grid>
+                </Frame>
+                <Grid Grid.Row="4">
+                    <Button VerticalOptions="Center" 
+                                x:Name="btnSubmitdailyList" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Clicked="btnSubmitdailyList_Clicked"
+                                Text="Submit"                                
+                                TextColor="White"/>
+                </Grid>
+            </Grid>
+            
+            </Grid>
+    </ContentPage.Content>
+   
+</ContentPage>

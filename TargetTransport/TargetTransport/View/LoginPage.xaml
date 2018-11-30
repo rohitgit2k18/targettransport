@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.LoginPage"
+             xmlns:TTcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+             BackgroundImage="bg.jpg"
+             Opacity="0.9">
+    <ContentPage.Content>
+        <Grid x:Name="rootlayout" Margin="20"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Image Source="logo.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Grid>
+            <Grid Grid.Row="1" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="Transparent">
+                    <TTcontrols:ImageEntry TextColor="White"                        
+                        Image="email" 
+                        Text="{Binding  userName,Mode=TwoWay}"
+                         PlaceholderColor="White"
+                        Placeholder="Email Address" 
+                         ImageHeight="20"
+                          ImageWidth="20"   
+                                           TextChanged="ImageEntry_TextChanged"
+                           LineColor="White"
+                        HorizontalOptions="FillAndExpand"/>
+                    <!--<Entry VerticalOptions="Center" 
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                          
+                           HorizontalOptions="FillAndExpand"
+                           PlaceholderColor="White"
+                           Placeholder="Email Address"/>
+                    <Image Source="email.png"
+                           Margin="10,0,0,0" 
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>-->
+                </Grid>
+                <Grid Grid.Row="1" BackgroundColor="Transparent">
+                    <TTcontrols:ImageEntry TextColor="White"                        
+                        Image="pass" 
+                        Text="{Binding  password,Mode=TwoWay}"
+                         PlaceholderColor="White"
+                       Placeholder="************"
+                        IsPassword="True"
+                         ImageHeight="20"
+                          ImageWidth="20"   
+                           LineColor="White"
+                        HorizontalOptions="FillAndExpand"/>
+                    <!--<Entry VerticalOptions="Center"
+                           HorizontalTextAlignment="Center" 
+                           TextColor="White" 
+                           IsPassword="True"
+                           Text="{Binding  password,Mode=TwoWay}"
+                           PlaceholderColor="White"
+                           HorizontalOptions="FillAndExpand"
+                           Placeholder="************"/>
+                    <Image Source="pass.png" Margin="10,0,0,0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>-->
+                </Grid>
+                <Grid Grid.Row="2" BackgroundColor="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackLayout Orientation="Horizontal" >
+                            <Switch x:Name="RememberMe" VerticalOptions="Center" Toggled="RememberMe_Toggled"  IsToggled="False"/>
+                            <Label VerticalOptions="Center" Text="Remember Me" FontSize="Small" TextColor="#FFFFFF" />
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackLayout Orientation="Vertical" Spacing="0">
+                            <Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" Text="Forgot Password?" FontSize="Small" TextColor="#FFFFFF" />
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="White"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                             Tapped="StackForgotpassword_Click"
+                             NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button Text="SIGN IN"
+                    x:Name="BtnSignIn"
+                    BorderColor="#F07430"
+                    BorderRadius="5"
+                    BorderWidth="5"
+                    WidthRequest="150"
+                    FontAttributes="Bold"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#F07430"
+                    TextColor="White" 
+                        Clicked="BtnSignIn_Clicked"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

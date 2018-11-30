@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.SplashSignInPage"
+             BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+            <Image Source="logo.png"/>
+            <Button Text="SIGN IN"
+                    x:Name="BtnSignIn"
+                    BorderColor="#F07430"
+                    BorderRadius="5"
+                    BorderWidth="5"
+                    WidthRequest="150"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#F07430"
+                    TextColor="White"                    
+                    Clicked="BtnSignIn_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

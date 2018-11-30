@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.Driver_SignatureScreenPage"
+              xmlns:signature="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+              BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="BackButton" NumberOfTapsRequired="1" Tapped="BackButton_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Label Text="DAILY CHECKLIST" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent"/>
+            <Grid Grid.Row="2">
+                <Frame HasShadow="true" CornerRadius="5" BackgroundColor="White"  Margin="15,5,15,5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Label Text="Driver Signature" TextColor="#296AB8" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Small"/>
+                        </Grid>
+                        <Grid Grid.Row="1" Padding="-20,0,-20,0">
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" />
+                        </Grid>
+                        <Grid Grid.Row="2" Padding="-20,0,-20,0">
+                            <signature:SignaturePadView x:Name="padView"                           
+                               VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                BackgroundColor="White"                                
+                                ClearText="Clear Me!" ClearTextColor="Red"                                 
+                                 StrokeColor="Black" StrokeWidth="2" />
+                        </Grid>
+                        <Grid Grid.Row="3" Padding="-20,0,-20,0">
+                            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="LightGray" />
+                        </Grid>
+                        <Grid Grid.Row="4"/>
+                    </Grid>
+                </Frame>
+
+            </Grid>
+            <Grid Grid.Row="3" BackgroundColor="Transparent"  Margin="15,5,15,5">
+                
+                <Button VerticalOptions="Start" 
+                                x:Name="btnSubmitSignature" 
+                                HorizontalOptions="FillAndExpand"
+                        Clicked="btnSubmitSignature_Clicked"
+                                BackgroundColor="#F3822D"
+                                Text="Done"                             
+                                TextColor="White"/>
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

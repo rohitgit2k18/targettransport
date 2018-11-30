@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.DriverSction.Driver_LoadDetailsPage"
+              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnBackButtonTapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Label Text="LOAD 1-WORLSHEET #" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Margin="15,0,15,0">
+                <Button 
+                    x:Name="btnLoadViewDetailsSubmit"
+                         VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand" 
+                        Text="Done"
+                        BorderColor="#F07430" 
+                        BackgroundColor="#F07430" 
+                    Clicked="btnLoadViewDetailsSubmit_Clicked"
+                        TextColor="White"/>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <Frame HasShadow="true"   BackgroundColor="White"  Margin="15,5,15,5">
+                    <Grid RowSpacing="1" BackgroundColor="#767676">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="load_type.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding JobTypeName}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="1" MinimumHeightRequest="40" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="load_from.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding LoadFrom}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="2" MinimumHeightRequest="40" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="deliver_to.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding DeliverTo}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="3" MinimumHeightRequest="40" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="w_bridge_docket.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding BridgeDocket}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="4" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="weight.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding NetWeight}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="5" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kms.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding KiloMeters}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="6" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="start_depot.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding StartDeport}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="7" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="depart_depot.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding DepartDeport}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="8" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="claim_minutes.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding WaitTimePerMinute}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="9" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="arrive_job.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding ArriveJob}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="10" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="depart_job.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding DepartJob}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="11" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="claim_minutes.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding WaitTimePerMinuteJob}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="12" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="tolls.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding TollName}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="13" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kilometer_start.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding Start}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="14" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="kilometer_finish.png"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding Finish}" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="15" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label Text="Comments" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+
+                            </Grid>
+                        </Grid>
+
+
+                        <Grid Grid.Row="16" BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                ShowLabel="True"                                                               
+                                OnImg="ck1.png"
+                                OffImg="ck2.png"  />
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="Copy this for a new Load?" 
+                                       TextColor="Gray" 
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Frame>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

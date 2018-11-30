@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:RBcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+               xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             x:Class="TargetTransport.View.NonDriverSection.NDriverDailyCheckListPage"
+             BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
+                </Grid>
+                <Grid Grid.Column="1" >
+                    <Label Text="DAILY PRESTART" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+            </Grid>
+            <ScrollView Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Frame HasShadow="true" CornerRadius="5"   Margin="15,5,15,5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="1">
+                                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Label Text="Welcome James" x:Name="lblUsername" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="Black"/>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                            <Label Text="You're driving Rego #:" FontAttributes="None" VerticalOptions="Center"   FontSize="Small" TextColor="Gray"/>
+                                            <Label x:Name="LblRegoId" FontAttributes="None"   FontSize="Small" TextColor="Black"/>
+                                        </StackLayout>
+                                        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                            <Label Text="if you want to change," VerticalOptions="Center"   FontSize="Small" TextColor="Gray"/>
+                                            <Label Text="Click Here" VerticalOptions="Center"  FontSize="Small" TextColor="#2E6FBA">
+                                                --><!--<StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                 Tapped="LblSelectVehicle_Click"
+                                                  NumberOfTapsRequired="1" />
+                                                </StackLayout.GestureRecognizers>--><!--
+                                            </Label>
+                                        </StackLayout>-->
+
+                                    </StackLayout>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="1" VerticalOptions="Start" HorizontalOptions="Center">
+                        <controls:CircleImage Source="dri.jpg" Margin="0,-60,0,0"  x:Name="imgProfile" BorderColor="White" BorderThickness="4"   Aspect="AspectFill" VerticalOptions="Start" HorizontalOptions="Center">
+                            <controls:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">150</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.WidthRequest>
+                            <controls:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">150</On>
+                                    <On Platform="WinPhone">75</On>
+                                </OnPlatform>
+                            </controls:CircleImage.HeightRequest>
+                        </controls:CircleImage>
+
+                    </Grid>
+                    <Grid Grid.Row="2" Margin="15,0,15,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackLayout Orientation="Horizontal" >
+                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                                               
+                                OnImg="select_all.png"
+                                OffImg="unselected.png"  />
+                                <Label Text="Select All" TextColor="#2E6FBA" FontSize="Small" VerticalOptions="Center" />
+                            </StackLayout>
+                        </Grid>
+                        <!--<Grid Grid.Column="1">
+                            <Frame HasShadow="true" CornerRadius="5" BackgroundColor="#F17830" Padding="0,-15,0,-15" HeightRequest="40">
+                                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="15">
+                                    --><!--<Label Text="Maintenance Request" VerticalOptions="Center" TextColor="White" FontAttributes="Bold" FontSize="Small"/>
+                                    <Image Source="request.png"/>-->
+                                    <!--<StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                                 Tapped="Ask4Maintanance_Click"
+                                                  NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>--><!--
+                                </StackLayout>
+                            </Frame>
+                        </Grid>-->
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Frame HasShadow="true" Grid.Row="0" CornerRadius="5" BackgroundColor="White"  Margin="15,5,15,5">
+                            <Grid>
+                                <flv:FlowListView FlowColumnCount="2" RowHeight="30"  SeparatorVisibility="None" x:Name="sepListView" HasUnevenRows="True" >
+                                    <flv:FlowListView.FlowColumnTemplate>
+                                        <DataTemplate>
+
+                                            <StackLayout Orientation="Horizontal" >
+                                                <ctrls:CheckBox 
+                                Checked="False"                                                                
+                                VerticalOptions="Center"
+                                 ShowLabel="True"                                 
+                                 Text="{Binding ChecklistName}"
+                                OnImg="checkbox_ticked.png"
+                                  CheckChanged="CheckBox_CheckChanged"
+                                OffImg="checkbox.png"  />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </flv:FlowListView.FlowColumnTemplate>
+                                </flv:FlowListView>
+
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Frame HasShadow="true" CornerRadius="5"   Margin="15,5,15,5">
+                            <Grid BackgroundColor="#F0EEF5" RowSpacing="1">
+                                <ListView x:Name="QuestionWithOptionList"  HasUnevenRows="True"  SeparatorColor="Transparent" SeparatorVisibility="None">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Grid.Row="0" BackgroundColor="White">
+                                                        <StackLayout Orientation="Vertical" Spacing="1">
+                                                            <Label Text="{Binding QuestionName}" TextColor="Black" FontSize="Small"/>
+                                                            <RBcontrols:BindableRadioGroup   x:Name="RadioCheck" 
+                                                                                             Orientation="Horizontal"
+                                                                                             CheckedChanged="RadioCheck_CheckedChanged"
+                                                                                             ItemsSource="{Binding LoadAnswerOptions}"
+                                                                                             />
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Frame HasShadow="true" CornerRadius="5"   Margin="15,5,15,5">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Label Text="the Forms layer is resizing it before showing it for the first time. It should therefore be possible in the notesEntry" HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="Small"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="15,5,15,5">
+                                    <ctrls:Border  CornerRadius="2" BackgroundColor="LightGray" Padding="1,1,1,1">
+                                        <Entry x:Name="txtComments" Placeholder="Comments(Optional)" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+                                    </ctrls:Border>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="6" Margin="15,5,15,5">
+                        <Button VerticalOptions="Center" 
+                                x:Name="btnSubmitdailyList" 
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#F3822D"
+                                Text="Submit"  
+                                Clicked="btnSubmitdailyList_Clicked"
+                                TextColor="White"/>
+                    </Grid>
+                </Grid>
+            </ScrollView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

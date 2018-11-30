@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.MechanicSction.Mechanic_RequestHistoryPage"
+             BackgroundImage="bg.jpg">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"  BackgroundColor="#206FC5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Start" HorizontalOptions="Start" Margin="15,15,0,0" Source="menu_side.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgHamburger_Click"
+                       NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label Text="REQUEST HISTORY" 
+                           VerticalOptions="Center" 
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" 
+                           HorizontalTextAlignment="Center" 
+                           TextColor="White"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <!--<Image VerticalOptions="Start" Margin="10,10,15,0" HorizontalOptions="End" Source="notification.png"/>-->
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" BackgroundColor="Transparent" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" BackgroundColor="#FF7817">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Image VerticalOptions="Center" HorizontalOptions="Center" Source="calender_white.png"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Label  
+                                       Text="Scheduled Requests"     
+                                        TextColor="White"
+                                       FontSize="Medium"
+                            FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                       VerticalOptions="Center"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListView x:Name="RequestHistoryList"  HasUnevenRows="True"  SeparatorColor="LightGray" SeparatorVisibility="Default">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Frame HasShadow="true" Grid.Row="0" BackgroundColor="White" CornerRadius="5" Padding="0" Margin="15,0,15,0">
+                                            <Grid RowSpacing="5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0" Padding="5">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0" Padding="10,0,10,0">
+                                                        <StackLayout Orientation="Vertical" Spacing="4">
+                                                            <StackLayout Orientation="Vertical">
+                                                                <Label HorizontalOptions="Start" Text="Rego:" TextColor="Gray" FontSize="Small"/>
+                                                                <Label HorizontalOptions="Start"  Text="{Binding Rego}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                    <Grid Grid.Column="1">
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label HorizontalOptions="Start" Text="Date:" TextColor="Gray" FontSize="Small"/>
+                                                            <Label  Text="{Binding RequestDateBinding}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                    <Grid Grid.Column="2">
+                                                        <StackLayout Orientation="Vertical">
+                                                            <Label HorizontalOptions="Start" Text="Status:" TextColor="Gray" FontSize="Small"/>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label  Text="gthhh"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                                                <Image VerticalOptions="Center"  Source="calender_white.png"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Grid>
+                                                <Grid Grid.Row="1" Padding="10,5,10,5">
+                                                    <StackLayout Orientation="Vertical">
+                                                        <Label HorizontalOptions="Start" Text="Location:" TextColor="Gray" FontSize="Small"/>
+                                                        <Label HorizontalOptions="Start"  Text="{Binding Location}"  TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

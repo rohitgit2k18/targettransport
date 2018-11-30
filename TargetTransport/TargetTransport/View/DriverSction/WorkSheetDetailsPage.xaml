@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"           
+              xmlns:local="clr-namespace:TargetTransport.Converters;assembly=TargetTransport"
+             x:Class="TargetTransport.View.DriverSction.WorkSheetDetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IntToStringConverter x:Key="IntToStringConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+           
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="BackButton" NumberOfTapsRequired="1" Tapped="BackButton_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                    <Label Text="DETAILS" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button VerticalOptions="Center" 
+                        HorizontalOptions="End" Text="Skip" 
+                        Clicked="Button_Clicked"
+                        BackgroundColor="#F07430"/>
+                </Grid>
+            </Grid>
+            <!--<Grid Grid.Row="2" Margin="15,0,15,0">
+               
+            </Grid>-->
+
+            <ScrollView Grid.Row="1">
+                <Grid BackgroundColor="#F0F0F0" ColumnSpacing="0" RowSpacing="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1" BackgroundColor="White">
+                        <!--<Image Source="progress.png"  VerticalOptions="Start"  HorizontalOptions="End" Margin="0,-10,0,0"/>-->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="WorkSheet #:" VerticalOptions="Center" FontAttributes="Bold" FontSize="Small" TextColor="#2B6CB8"/>
+                            <Label Text="ABC103011" VerticalOptions="Center" FontAttributes="Bold" FontSize="Small" TextColor="#2B6CB8"/>
+                        </StackLayout>
+                    </Grid>
+                      <Grid Grid.Row="1" Grid.Column="0" BackgroundColor="White">
+                            <Image Source="about.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                      </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                                         <Label Text="Job:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                         <Label Text="ABC" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="user.png" VerticalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30" HorizontalOptions="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Customer Name:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="Allen Robonson" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="truck.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="3" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Vehicle:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="Truck" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="4" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="nav.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="4" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Plant ID:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="1234" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="5" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="clock.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="5" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Job Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="11:00 AM" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="6" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="cal.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="6" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Job Date:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="19 jun 2017" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="7" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="user.png" VerticalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30" HorizontalOptions="Center"/>
+
+                    </Grid>
+                    <Grid Grid.Row="7" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Client Name:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="Allen Robonson" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="8" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="8" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Attachment:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="abc.pdf" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="9" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="9" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="JOB Description:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="some jon needs to be done" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <!--<Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                             Tapped="TapGestureRecognizer_Tapped"
+                              NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>-->
+                </Grid>
+            </ScrollView>
+            <Grid Grid.Row="2" BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="10,0,0,0">
+                        <Label Text="Loads" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Bold"/>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="0,0,10,0">
+                        <Button 
+                        x:Name="btnLoadView"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand" 
+                        Text="Add Load"
+                        BorderColor="#F07430" 
+                        BackgroundColor="#F07430"   
+                            Clicked="btnLoadView_Clicked"
+                        TextColor="White"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListView x:Name="LoadList"  HasUnevenRows="True"  SeparatorColor="Transparent" SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100">
+                                    <Frame HasShadow="true" Margin="5">
+                                        <Grid  RowSpacing="0" ColumnSpacing="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0">
+                                                <Image x:Name="imgProfielPic"                              
+                               HorizontalOptions="Center"                                     
+                                Aspect="AspectFill" 
+                                       HeightRequest="60"
+                                       WidthRequest="50"
+                               VerticalOptions="Center"                             
+                               Source="load_type.png"/>
+                                            </Grid>
+                                            <Grid Grid.Column="1" Grid.ColumnSpan="2">
+                                                <StackLayout Orientation="Vertical">
+                                                    <Label x:Name="lblLoadNmename"                                 
+                                   HorizontalTextAlignment="Start"
+                                           FontAttributes="Bold"
+                                           FontSize="Medium"
+                                           TextColor="#3782BB"
+                                   Text="{Binding LoadId,Converter={StaticResource Key=IntToStringConverter},StringFormat='Load :{0}'}"/>
+                                                    <StackLayout Orientation="Horizontal" >
+                                                        <Label x:Name="lblfrom"                                                                   
+                                           TextColor="Gray"
+                                   Text="{Binding LoadFrom}"/>
+                                                        <Label x:Name="lblto"                                 
+                                 
+                                           TextColor="Gray"
+                                   Text="to"/>
+                                                        <Label x:Name="lbl1from"                                                                    
+                                           TextColor="Gray"
+                                   Text="{Binding DeliverTo}"/>
+                                                    </StackLayout>
+                                                    
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid Grid.Column="2">
+                                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                                    <Image x:Name="imgeditPic"                                                                                                                                               
+                                                       VerticalOptions="Center" 
+                                                           Source="icons_edit.png"
+                                                        Aspect="AspectFill">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                             Tapped="OnEdit_Click"
+                                                               CommandParameter="{Binding .}"
+                                                               NumberOfTapsRequired="1" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Image x:Name="imgDownloadPic"                                                                                                                                               
+                                                          VerticalOptions="Center" 
+                                                           Source="icons_trash.png"
+                                                           Aspect="AspectFill">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Tapped="OnDelete_Click"
+                                                              CommandParameter="{Binding .}"
+                                                                 NumberOfTapsRequired="1" />
+                                                                 </Image.GestureRecognizers>
+                                                    </Image>
+                                                    
+                                                </StackLayout>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

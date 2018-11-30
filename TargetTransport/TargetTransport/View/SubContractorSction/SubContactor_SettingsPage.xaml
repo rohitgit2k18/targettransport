@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TargetTransport.View.SubContractorSction.SubContactor_SettingsPage">
+    <ContentPage.Content>
+        <Grid x:Name="RootLayout" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" BackgroundColor="#2E6FBA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Image VerticalOptions="Center" 
+                           HorizontalOptions="Start"
+                           Margin="10,05,0,0" 
+                           Source="menu_side.png"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                          Tapped="imgHamburger_Click"
+                          NumberOfTapsRequired="1" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Label Text="SETTINGS"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" 
+                           TextColor="White" 
+                           FontSize="Large" 
+                           FontAttributes="Bold"/>
+                </Grid>
+                <Grid Grid.Column="2" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<Grid Grid.Column="0">
+                        <Image VerticalOptions="Center" 
+                           HorizontalOptions="Center"                          
+                           Source="search.png"/>
+                    </Grid>-->
+                    <Grid Grid.Column="1">
+                        <Image VerticalOptions="Center" 
+                           HorizontalOptions="Center"                         
+                           Source="notification.png"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
