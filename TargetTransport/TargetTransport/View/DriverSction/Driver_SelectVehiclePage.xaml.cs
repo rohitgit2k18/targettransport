@@ -56,7 +56,9 @@ namespace TargetTransport.View.DriverSction
                 _objHeaderModel.TokenCode = Settings.TokenCode;
                 _objDriver_SelectVehicleRequest = new Driver_SelectVehicleRequest
                 {
-                    Id = Settings.UserId
+                    Id = Settings.UserId,
+                    //changes by ritesh/rohit
+                    CompanyId=Settings.CompanyId
                 };
                 await Navigation.PushPopupAsync(new LoadingPopPage());
                 _objDriverSelectVehicleResonse = await _apiServices.GetDriverSelectVehicleListAsync(new Get_API_Url().VehicleListApi(_baseUrl), true, _objHeaderModel, _objDriver_SelectVehicleRequest);

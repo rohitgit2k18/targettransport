@@ -73,19 +73,19 @@ namespace TargetTransport.View.DriverSction
                                        where result.Id == _objDriver_EditLoadResponse.Response.LoadDetails.JobType
                                        select result).FirstOrDefault();
 
-                    var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
-                                        where result.AccountId == _objDriver_EditLoadResponse.Response.LoadDetails.TollId
-                                        select result).FirstOrDefault();
+                    //var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
+                    //                    where result.AccountId == _objDriver_EditLoadResponse.Response.LoadDetails.TollId
+                    //                    select result).FirstOrDefault();
                     if (existingLoadType != null)
                     {
                         int i = _objDriver_LoadTypeResponse.Response.LoadTypes.IndexOf(existingLoadType);
                         dropdownLoadType.SelectedIndex = i;
                     }
-                    if (existingToll != null)
-                    {
-                        int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
-                        dropdownTolls.SelectedIndex = j;
-                    }
+                    //if (existingToll != null)
+                    //{
+                    //    int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
+                    //    dropdownTolls.SelectedIndex = j;
+                    //}
                     BindingContext = _objDriver_EditLoadResponse.Response.LoadDetails;
                     DependencyService.Get<IToast>().Show(_objDriver_EditLoadResponse.Response.Message);
                     await Navigation.PopAllPopupAsync();
@@ -156,6 +156,8 @@ namespace TargetTransport.View.DriverSction
                 {
                     DependencyService.Get<IToast>().Show(_objDriver_TollsListResponse.Response.Description);
                     await Navigation.PopAllPopupAsync();
+                    //need to change later
+                    GetLoad();
                 }
             }
             catch (Exception ex)

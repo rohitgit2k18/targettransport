@@ -123,6 +123,7 @@ public int EmployeeId { get; set; }
 public string VehicleRego { get; set; }
 public string Attachment { get; set; }
 public int LoadTypeName { get; set; }
+        public string JobNumber { get; set; }
 public string JobDescription { get; set; }
 public int Createdby { get; set; }
 public DateTime? CreatedOn { get; set; }
@@ -132,13 +133,13 @@ public object Fleet { get; set; }
 public int LoadId { get; set; }
 public VehicleEntity VehicleEntity { get; set; }
 public string SiteName { get; set; }
-public object ClientName { get; set; }
+public string ClientName { get; set; }
 public string ProgrammedStartTime { get; set; }
 public string OffSiteFinishTime { get; set; }
 public double? TotalHourlyHire { get; set; }
 public double? TotalWaitTimePlant { get; set; }
 public double? TotalWaitTimeOnSite { get; set; }
-public object WorksheetNumber { get; set; }
+public string WorksheetNumber { get; set; }
 public object LoadData { get; set; }
 public List<TollList> TollList { get; set; }
 public double? TotalTollAmount { get; set; }

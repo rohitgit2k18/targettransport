@@ -16,7 +16,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public string ProgramStartTime { get; set; }
         public int ClientId { get; set; }
         public int SiteId { get; set; }
-        public int JobKMs { get; set; }
+        public string JobKMs { get; set; }
         public int AssignTo { get; set; }
         public int EmployeeId { get; set; }
         public int VehicleId { get; set; }

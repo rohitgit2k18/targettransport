@@ -586,7 +586,7 @@ namespace TargetTransport_Api.ApiHandler
                 if (response.IsSuccessStatusCode)
                 {
                     var SucessResponse = await response.Content.ReadAsStringAsync();
-                    objDriver_TollsListResponse = JsonConvert.DeserializeObject<Driver_TollsListResponse>(SucessResponse);
+                        objDriver_TollsListResponse = JsonConvert.DeserializeObject<Driver_TollsListResponse>(SucessResponse);
                     return objDriver_TollsListResponse;
                 }
                 else

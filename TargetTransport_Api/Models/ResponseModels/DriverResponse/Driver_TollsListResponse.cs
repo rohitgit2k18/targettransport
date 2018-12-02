@@ -34,6 +34,10 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public object VechicleIds { get; set; }
     public int ComapnyId { get; set; }
     public int WorksheetTollId { get; set; }
+
+
+
+
 }
 
 public class TollsResponse

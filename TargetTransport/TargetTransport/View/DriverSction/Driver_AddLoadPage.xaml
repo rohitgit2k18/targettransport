@@ -110,30 +110,58 @@
                         </Grid>
 
                         <Grid Grid.Row="3" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="arrive_job"
+                                Image="arrive_job"
+                                 ImageHeight="35"
+                                ImageWidth="35"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                Unfocused="arrive_job_Unfocused"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="False"
+                                />
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="w_bridge_docket"                        
+                           Image="arrive_job" 
+                          x:Name="Entryarrive_job"
                          PlaceholderColor="Gray"
-                          Placeholder="W'Bridge Docket" 
+                          Placeholder="Arrive Job" 
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                          Text="{Binding BridgeDocket}"
+                         Focused="Entryarrive_job_Focused"
+                           Text="{Binding ArriveJob}"                          
                         HorizontalOptions="FillAndExpand"/>
-                           
+
                         </Grid>
 
 
                         <Grid Grid.Row="4" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                 x:Name="depart_job"
+                                Image="depart_job"
+                                 ImageHeight="35"
+                                ImageWidth="35"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                HorizontalOptions="FillAndExpand"
+                                Unfocused="depart_job_Unfocused"
+                                IsVisible="False"
+                                />
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="weight"                        
+                           Image="depart_job"   
+                             x:Name="Entrydepart_job"
                          PlaceholderColor="Gray"
-                          Placeholder="weight" 
+                          Placeholder="Depart Job" 
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                           Text="{Binding NetWeight}"
+                            Focused="Entrydepart_job_Focused"
+                            Text="{Binding DepartJob}"  
                         HorizontalOptions="FillAndExpand"/>
-                           
+
                         </Grid>
 
 
@@ -222,58 +250,29 @@
 
 
                         <Grid Grid.Row="9" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
-                                x:Name="arrive_job"
-                                Image="arrive_job"
-                                 ImageHeight="35"
-                                ImageWidth="35"
-                                LineColor="Gray"
-                                TextColor="Gray"
-                                Format = "HH:mm:ss"
-                                Unfocused="arrive_job_Unfocused"
-                                HorizontalOptions="FillAndExpand"
-                                IsVisible="False"
-                                />
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="arrive_job" 
-                          x:Name="Entryarrive_job"
+                           Image="w_bridge_docket"                        
                          PlaceholderColor="Gray"
-                          Placeholder="Arrive Job" 
+                          Placeholder="W'Bridge Docket" 
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                         Focused="Entryarrive_job_Focused"
-                           Text="{Binding ArriveJob}"                          
+                          Text="{Binding BridgeDocket}"
                         HorizontalOptions="FillAndExpand"/>
-                            
                         </Grid>
 
 
                         <Grid Grid.Row="10" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
-                                 x:Name="depart_job"
-                                Image="depart_job"
-                                 ImageHeight="35"
-                                ImageWidth="35"
-                                LineColor="Gray"
-                                TextColor="Gray"
-                                Format = "HH:mm:ss"
-                                HorizontalOptions="FillAndExpand"
-                                Unfocused="depart_job_Unfocused"
-                                IsVisible="False"
-                                />
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="depart_job"   
-                             x:Name="Entrydepart_job"
+                           Image="weight"                        
                          PlaceholderColor="Gray"
-                          Placeholder="Depart Job" 
+                          Placeholder="weight" 
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                            Focused="Entrydepart_job_Focused"
-                            Text="{Binding DepartJob}"  
+                           Text="{Binding NetWeight}"
                         HorizontalOptions="FillAndExpand"/>
-                            
+
                         </Grid>
 
 
@@ -311,7 +310,7 @@
 
 
                         <Grid Grid.Row="13" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
+                            <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_start"
                                 Image="kilometer_start"
                                  ImageHeight="35"
@@ -322,7 +321,7 @@
                                 IsVisible="False"
                                 Unfocused="kilometer_start_Unfocused"
                                 HorizontalOptions="FillAndExpand"
-                                />
+                                />-->
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="kilometer_start"   
                            x:Name="Entrykilometer_start"
@@ -331,15 +330,14 @@
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                            Text="{Binding Start}"   
-                           Focused="Entrykilometer_start_Focused"
+                            Text="{Binding Start}"                              
                         HorizontalOptions="FillAndExpand"/>
                             
                         </Grid>
 
 
                         <Grid Grid.Row="14" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
+                            <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_finish"
                                 Image="kilometer_finish"
                                  ImageHeight="35"
@@ -350,7 +348,7 @@
                                 IsVisible="False"
                                 Unfocused="kilometer_finish_Unfocused"
                                 HorizontalOptions="FillAndExpand"
-                                />
+                                />-->
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="kilometer_finish"                        
                          PlaceholderColor="Gray"
@@ -359,7 +357,7 @@
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"
-                           Focused="Entrykilometer_finish_Focused"
+                           
                             Text="{Binding Finish}"                           
                         HorizontalOptions="FillAndExpand"/>
                             

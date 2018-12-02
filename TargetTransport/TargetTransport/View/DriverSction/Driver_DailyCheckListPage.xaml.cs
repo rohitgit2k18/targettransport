@@ -148,7 +148,9 @@ namespace TargetTransport.View.DriverSction
                 _objDriver_DailyCheckListGetRequest = new Driver_DailyCheckListGetRequest
                 {
                     Id = Settings.UserId,
-                    WorksheetId = WorkSheetId.ToString()
+                    WorksheetId = WorkSheetId.ToString(),
+                    //changes by ritesh/rohit
+                    DefaultVehicleId = Settings.VehicleID
                 };
 
                 await Navigation.PushPopupAsync(new LoadingPopPage());

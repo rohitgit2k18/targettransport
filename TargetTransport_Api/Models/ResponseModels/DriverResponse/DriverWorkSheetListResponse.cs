@@ -40,8 +40,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public object LoadData { get; set; }
     public int Limit { get; set; }
     public int OffSet { get; set; }
-    public DateTime FromDate { get; set; }
-    public object Rego { get; set; }
+    public DateTime FromDate { get; set; }    
     public object DriverName { get; set; }
     public DateTime FDate { get; set; }
     public DateTime TDate { get; set; }
@@ -52,7 +51,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public int LoadId { get; set; }
     public object TollList { get; set; }
     public string VechicleName { get; set; }
-    public object ClientName { get; set; }
+    public string ClientName { get; set; }
     public object SiteName { get; set; }
     public object AssignToName { get; set; }
     public object InvoiceStatusName { get; set; }
@@ -62,7 +61,12 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public object Search { get; set; }
         public string ProgressImage { get; set; }
         public string CompletedImage { get; set; }
-}
+        //--New changes Ritesh/Rohit
+        public string CustomerName { get; set; }
+        public string JobNumber { get; set; }
+        public string PlantId { get; set; }
+        public string Rego { get; set; }
+    }
 
     public class WorkSheetListEntity
     {  

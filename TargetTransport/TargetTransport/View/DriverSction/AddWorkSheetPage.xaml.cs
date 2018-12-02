@@ -199,7 +199,8 @@ namespace TargetTransport.View.DriverSction
                 _objHeaderModel.TokenCode = Settings.TokenCode;
                 _objDriver_SelectVehicleRequest = new Driver_SelectVehicleRequest
                 {
-                    Id = Settings.UserId
+                    Id = Settings.UserId,
+                    CompanyId = Settings.CompanyId
                 };
                 await Navigation.PushPopupAsync(new LoadingPopPage());
                 _objDriverSelectVehicleResonse = await _apiServices.GetDriverSelectVehicleListAsync(new Get_API_Url().VehicleListApi(_baseUrlVehicle), true, _objHeaderModel, _objDriver_SelectVehicleRequest);
@@ -400,11 +401,11 @@ namespace TargetTransport.View.DriverSction
                 _objAddWorksheetRequestModel.SiteName = SitenameData.Name;
                 if(!string.IsNullOrEmpty(SitenameData.SiteInstructions))
                 {
-                    _objAddWorksheetRequestModel.JobKMs = Convert.ToInt32(SitenameData.SiteInstructions);
+                    _objAddWorksheetRequestModel.JobKMs = SitenameData.SiteInstructions;
                 }
                 else
                 {
-                    _objAddWorksheetRequestModel.JobKMs = 0;
+                    _objAddWorksheetRequestModel.JobKMs = string.Empty;
                 }
             }
             else

@@ -74,18 +74,18 @@ namespace TargetTransport.View.DriverSction
                     }
                     else
                     {
-                        if(kilometer_finish.Time<= kilometer_start.Time)
-                        {
-                            DependencyService.Get<IToast>().Show("kilometer_finish can not be less than kilometer_start");
-                        }
-                        else
-                        {
+                        //if(kilometer_finish.Text<= kilometer_start.Time)
+                        //{
+                        //    DependencyService.Get<IToast>().Show("kilometer_finish can not be less than kilometer_start");
+                        //}
+                        //else
+                        //{
                             _objDriver_AddLoadRequest.StartDeport = StartDepot.Time.ToString();
                             _objDriver_AddLoadRequest.DepartDeport = depart_depot.Time.ToString();
                             _objDriver_AddLoadRequest.ArriveJob = arrive_job.Time.ToString();
                             _objDriver_AddLoadRequest.DepartJob = depart_job.Time.ToString();
-                            _objDriver_AddLoadRequest.Start = kilometer_start.Time.ToString();
-                            _objDriver_AddLoadRequest.Finish = kilometer_finish.Time.ToString();
+                            _objDriver_AddLoadRequest.Start = Entrykilometer_start.Text.ToString();
+                            _objDriver_AddLoadRequest.Finish = Entrykilometer_finish.Text.ToString();
                             _objDriver_AddLoadRequest.Total = _objDriver_AddLoadRequest.KiloMeters;
                             if (_objDriver_AddLoadRequest.Start != null ||
                                 _objDriver_AddLoadRequest.StartDeport != null ||
@@ -105,7 +105,7 @@ namespace TargetTransport.View.DriverSction
                             {
                                 DependencyService.Get<IToast>().Show("Please fill required fields");
                             }
-                        }
+                       // }
                     }
                 }
                 
@@ -285,39 +285,39 @@ namespace TargetTransport.View.DriverSction
             });
         }
 
-        private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
-        {
-            Entrykilometer_start.IsEnabled = true;
-            Entrykilometer_start.Unfocus();
-            Entrykilometer_start.Text = kilometer_start.Time.ToString();
-        }
+        //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    Entrykilometer_start.IsEnabled = true;
+        //    Entrykilometer_start.Unfocus();
+        //    Entrykilometer_start.Text = kilometer_start.Time.ToString();
+        //}
 
-        private void Entrykilometer_start_Focused(object sender, FocusEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Entrykilometer_start.IsEnabled = false;
-                kilometer_start.Focus();
+        //private void Entrykilometer_start_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entrykilometer_start.IsEnabled = false;
+        //        kilometer_start.Focus();
                
-            });
-        }
+        //    });
+        //}
 
-        private void kilometer_finish_Unfocused(object sender, FocusEventArgs e)
-        {
-            Entrykilometer_finish.IsEnabled = true;
-            Entrykilometer_finish.Unfocus();
-            Entrykilometer_finish.Text = kilometer_finish.Time.ToString();
-        }
+        //private void kilometer_finish_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    Entrykilometer_finish.IsEnabled = true;
+        //    Entrykilometer_finish.Unfocus();
+        //    Entrykilometer_finish.Text = kilometer_finish.Time.ToString();
+        //}
 
-        private void Entrykilometer_finish_Focused(object sender, FocusEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Entrykilometer_finish.IsEnabled = false;
-                kilometer_finish.Focus();
+        //private void Entrykilometer_finish_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entrykilometer_finish.IsEnabled = false;
+        //        kilometer_finish.Focus();
 
-            });
-        }
+        //    });
+        //}
 
         //private void LoaddatePicker_Unfocused(object sender, FocusEventArgs e)
         //{

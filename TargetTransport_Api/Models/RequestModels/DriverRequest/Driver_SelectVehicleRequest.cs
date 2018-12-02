@@ -9,5 +9,6 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
    public class Driver_SelectVehicleRequest
     {
         public int Id { get; set; }
+        public int? CompanyId { get; set; }
     }
 }

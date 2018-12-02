@@ -10,5 +10,9 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
     {
         public int Id { get; set; }
         public string WorksheetId { get; set; }
+        public long DefaultVehicleId { get; set; }
+
+
+
     }
 }
