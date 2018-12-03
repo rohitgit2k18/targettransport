@@ -73,19 +73,19 @@ namespace TargetTransport.View.DriverSction
                                        where result.Id == _objDriver_EditLoadResponse.Response.LoadDetails.JobType
                                        select result).FirstOrDefault();
 
-                    //var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
-                    //                    where result.AccountId == _objDriver_EditLoadResponse.Response.LoadDetails.TollId
-                    //                    select result).FirstOrDefault();
+                    var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
+                                        where result.AccountId == _objDriver_EditLoadResponse.Response.LoadDetails.TollId
+                                        select result).FirstOrDefault();
                     if (existingLoadType != null)
                     {
                         int i = _objDriver_LoadTypeResponse.Response.LoadTypes.IndexOf(existingLoadType);
                         dropdownLoadType.SelectedIndex = i;
                     }
-                    //if (existingToll != null)
-                    //{
-                    //    int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
-                    //    dropdownTolls.SelectedIndex = j;
-                    //}
+                    if (existingToll != null)
+                    {
+                        int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
+                        dropdownTolls.SelectedIndex = j;
+                    }
                     BindingContext = _objDriver_EditLoadResponse.Response.LoadDetails;
                     DependencyService.Get<IToast>().Show(_objDriver_EditLoadResponse.Response.Message);
                     await Navigation.PopAllPopupAsync();
@@ -318,39 +318,39 @@ namespace TargetTransport.View.DriverSction
             });
         }
 
-        private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
-        {
-            Entrykilometer_start.IsEnabled = true;
-            Entrykilometer_start.Unfocus();
-            Entrykilometer_start.Text = kilometer_start.Time.ToString();
-        }
+        //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    Entrykilometer_start.IsEnabled = true;
+        //    Entrykilometer_start.Unfocus();
+        //    Entrykilometer_start.Text = kilometer_start.Time.ToString();
+        //}
 
-        private void Entrykilometer_start_Focused(object sender, FocusEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Entrykilometer_start.IsEnabled = false;
-                kilometer_start.Focus();
+        //private void Entrykilometer_start_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entrykilometer_start.IsEnabled = false;
+        //        kilometer_start.Focus();
 
-            });
-        }
+        //    });
+        //}
 
-        private void kilometer_finish_Unfocused(object sender, FocusEventArgs e)
-        {
-            Entrykilometer_finish.IsEnabled = true;
-            Entrykilometer_finish.Unfocus();
-            Entrykilometer_finish.Text = kilometer_finish.Time.ToString();
-        }
+        //private void kilometer_finish_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    Entrykilometer_finish.IsEnabled = true;
+        //    Entrykilometer_finish.Unfocus();
+        //    Entrykilometer_finish.Text = kilometer_finish.Time.ToString();
+        //}
 
-        private void Entrykilometer_finish_Focused(object sender, FocusEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Entrykilometer_finish.IsEnabled = false;
-                kilometer_finish.Focus();
+        //private void Entrykilometer_finish_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entrykilometer_finish.IsEnabled = false;
+        //        kilometer_finish.Focus();
 
-            });
-        }
+        //    });
+        //}
 
         private void LoaddatePicker_Unfocused(object sender, FocusEventArgs e)
         {

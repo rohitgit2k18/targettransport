@@ -138,7 +138,7 @@ namespace TargetTransport
             try
             {
                 String imageBase64;
-                Stream image = await padView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Jpeg);               
+                Stream image = await padView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Jpeg, Color.Black, Color.White, 1f);               
                 _objHeaderModel.TokenCode = Settings.TokenCode;
                 if(image != null)
                 {

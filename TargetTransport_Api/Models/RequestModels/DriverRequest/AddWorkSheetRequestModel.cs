@@ -22,6 +22,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public int VehicleId { get; set; }
         public string Attachment { get; set; }
         public int LoadTypeId { get; set; }
+        public string JobNumber { get; set; }
         public string JobDescription { get; set; }
         public int Createdby { get; set; }
         public DateTime CreatedOn { get; set; }

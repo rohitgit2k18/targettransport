@@ -32,12 +32,15 @@ namespace TargetTransport.View.DriverSction
         private LoadCompanySiteResponse _objLoadCompanySiteResponse;
         private Driver_GetClientsRequest _objDriver_GetClientsRequest;
         private Driver_GetClientsResponse _objDriver_GetClientsResponse;
+        private AddWorkSheetNumberResponse _objAddWorkSheetNumberResponse;
+        private AddWorkSheetNumberRequest _objAddWorkSheetNumberRequest;
         private HeaderModel _objHeaderModel;
         private string _baseUrlLoadTypes;
         private string _baseUrlVehicle;
         private string _baseUrlCompanySite;
         private string _baseUrlGetClients;
         private string _baseUrlAddWorkSheet;
+        private string _baseUrlGetWorksheetNo;
         private RestApi _apiServices;
         private Int32 ClientId;
         #endregion
@@ -51,6 +54,7 @@ namespace TargetTransport.View.DriverSction
             _objDriverSelectVehicleResonse = new DriverSelectVehicleResonse();
             _objLoadCompanySiteResponse = new LoadCompanySiteResponse();
             _objDriver_GetClientsResponse = new Driver_GetClientsResponse();
+            _objAddWorkSheetNumberResponse = new AddWorkSheetNumberResponse();
             _objHeaderModel = new HeaderModel();
             _apiServices = new RestApi();
             _baseUrlLoadTypes = Settings.Url + Domain.GetLoadTypesApiConstant;
@@ -58,6 +62,7 @@ namespace TargetTransport.View.DriverSction
             _baseUrlCompanySite = Settings.Url + Domain.GetCompanySitesApiConstant;
             _baseUrlGetClients = Settings.Url + Domain.GetClientsApiConstant;
             _baseUrlAddWorkSheet = Settings.Url + Domain.AddWorkSheetApiConstant;
+            _baseUrlGetWorksheetNo = Settings.Url + Domain.GetWorksheetNumberApiConstant;
             BindingContext = _objAddWorksheetRequestModel;
            // xyz("WKA009");
 
@@ -65,6 +70,7 @@ namespace TargetTransport.View.DriverSction
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            LoadWorkSheetNumber();
             LoadClients();
             LoadVehicleData();
             GetLoadTypes();
@@ -126,6 +132,38 @@ namespace TargetTransport.View.DriverSction
         //        return newStr;
 
         //}
+        private async void LoadWorkSheetNumber()
+        {
+            try
+            {
+                _objHeaderModel.TokenCode = Settings.TokenCode;
+                _objAddWorkSheetNumberRequest = new AddWorkSheetNumberRequest
+                {
+                    CompanyId = Settings.CompanyId
+                    
+                };
+                await Navigation.PushPopupAsync(new LoadingPopPage());
+                _objAddWorkSheetNumberResponse = await _apiServices.GetWorkSheetNumberAsync(new Get_API_Url().CommonBaseApi(_baseUrlGetWorksheetNo), true, _objHeaderModel, _objAddWorkSheetNumberRequest);
+                if (_objAddWorkSheetNumberResponse.Response.StatusCode == 200)
+                {
+                    DependencyService.Get<IToast>().Show("Sucess!");
+                    XFEntWorkshettNumber.Text = _objAddWorkSheetNumberResponse.Response.Data;
+                    XFEntWorkshettNumber.IsEnabled = false;
+                     await Navigation.PopAllPopupAsync();
+                    //  LoadComapnySites();
+                }
+                else
+                {
+                    DependencyService.Get<IToast>().Show("Something Bad Happend please Try again Later!");
+                    await Navigation.PopAllPopupAsync();
+                }
+            }
+            catch(Exception ex)
+            {
+                var msg = ex.Message;
+            }
+        }
+
         private async void LoadClients()
         {
             try
@@ -401,7 +439,7 @@ namespace TargetTransport.View.DriverSction
                 _objAddWorksheetRequestModel.SiteName = SitenameData.Name;
                 if(!string.IsNullOrEmpty(SitenameData.SiteInstructions))
                 {
-                    _objAddWorksheetRequestModel.JobKMs = SitenameData.SiteInstructions;
+                    _objAddWorksheetRequestModel.JobDescription = SitenameData.SiteInstructions;
                 }
                 else
                 {

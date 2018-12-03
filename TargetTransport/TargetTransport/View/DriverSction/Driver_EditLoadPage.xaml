@@ -313,7 +313,7 @@
 
 
                         <Grid Grid.Row="13" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
+                            <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_start"
                                 Image="kilometer_start"
                                  ImageHeight="30"
@@ -324,7 +324,7 @@
                                 IsVisible="False"
                                 Unfocused="kilometer_start_Unfocused"
                                 HorizontalOptions="FillAndExpand"
-                                />
+                                />-->
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="kilometer_start"   
                            x:Name="Entrykilometer_start"
@@ -333,15 +333,14 @@
                          ImageHeight="30"
                           ImageWidth="30"   
                            LineColor="Gray"
-                            Text="{Binding Start,Mode=TwoWay}"   
-                           Focused="Entrykilometer_start_Focused"
+                            Text="{Binding Start,Mode=TwoWay}"                              
                         HorizontalOptions="FillAndExpand"/>
 
                         </Grid>
 
 
                         <Grid Grid.Row="14" BackgroundColor="White">
-                            <TTcontrols:ImageTimePicker 
+                            <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_finish"
                                 Image="kilometer_finish"
                                  ImageHeight="30"
@@ -352,7 +351,7 @@
                                 IsVisible="False"
                                 Unfocused="kilometer_finish_Unfocused"
                                 HorizontalOptions="FillAndExpand"
-                                />
+                                />-->
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="kilometer_finish"                        
                          PlaceholderColor="Gray"
@@ -360,8 +359,7 @@
                           Placeholder="Kilometer Finish" 
                          ImageHeight="30"
                           ImageWidth="30"   
-                           LineColor="Gray"
-                           Focused="Entrykilometer_finish_Focused"
+                           LineColor="Gray"                          
                             Text="{Binding Finish,Mode=TwoWay}"                           
                         HorizontalOptions="FillAndExpand"/>
 

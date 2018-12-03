@@ -42,6 +42,7 @@
     <Compile Include="Models\DailyEntryRadio.cs" />
     <Compile Include="Models\HeaderModel.cs" />
     <Compile Include="Models\RequestModels\BaseRequestModel.cs" />
+    <Compile Include="Models\RequestModels\DriverRequest\AddWorkSheetNumberRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\AddWorkSheetRequestModel.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\ChnagePasswordRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\DeleteLoadRequest.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Models\RequestModels\NonDriverRequest\NonDriver_HomeDataRequest.cs" />
     <Compile Include="Models\RequestModels\SubContractorRequest\SC_HomePageRequest.cs" />
     <Compile Include="Models\ResponseModels\BaseResponseModel.cs" />
+    <Compile Include="Models\ResponseModels\DriverResponse\AddWorkSheetNumberResponse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\AddWorksheetResponseModel.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\ChangePaswwordResponse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\DeleteLoadResponse.cs" />

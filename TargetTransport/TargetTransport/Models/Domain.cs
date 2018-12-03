@@ -74,8 +74,17 @@ namespace TargetTransport.Models
             {
                 return "api/MobileUser/GetVechicleByEmployeeId";
             }
-        }        
-             public static string AddWorkSheetApiConstant
+        }
+        //  api/WorkSheet/GetWorksheetNumber
+        public static string GetWorksheetNumberApiConstant
+        {
+            get
+            {
+                return "api/WorkSheet/GetWorksheetNumber";
+            }
+        }
+
+        public static string AddWorkSheetApiConstant
         {
             get
             {

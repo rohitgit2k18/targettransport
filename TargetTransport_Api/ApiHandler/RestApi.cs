@@ -1130,6 +1130,37 @@ namespace TargetTransport_Api.ApiHandler
                 }
             }
         }
+        public async Task<AddWorkSheetNumberResponse> GetWorkSheetNumberAsync(string uri, Boolean IsHeaderRequired, HeaderModel objHeaderModel, AddWorkSheetNumberRequest _objAddWorkSheetNumberRequest)
+        {
+
+            AddWorkSheetNumberResponse objAddWorkSheetNumberResponse;
+            string s = JsonConvert.SerializeObject(_objAddWorkSheetNumberRequest);
+            HttpResponseMessage response = null;
+            using (var stringContent = new StringContent(s, System.Text.Encoding.UTF8, "application/json"))
+            {
+
+                if (IsHeaderRequired)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", objHeaderModel.TokenCode);
+                }
+                response = await client.PostAsync(uri, stringContent);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var SucessResponse = await response.Content.ReadAsStringAsync();
+                    objAddWorkSheetNumberResponse = JsonConvert.DeserializeObject<AddWorkSheetNumberResponse>(SucessResponse);
+                    return objAddWorkSheetNumberResponse;
+                }
+                else
+                {
+                    var ErrorResponse = await response.Content.ReadAsStringAsync();
+                    objAddWorkSheetNumberResponse = JsonConvert.DeserializeObject<AddWorkSheetNumberResponse>(ErrorResponse);
+                    return objAddWorkSheetNumberResponse;
+                }
+            }
+        }
+
         public async Task<AddWorksheetResponseModel> AddWorkSheetAsync(string uri, Boolean IsHeaderRequired, HeaderModel objHeaderModel, AddWorkSheetRequestModel _objAddWorkSheetRequestModel)
         {
 
