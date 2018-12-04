@@ -119,8 +119,7 @@
                                 LineColor="Gray"
                                 TextColor="Gray"
                                 Format = "HH:mm:ss"
-                                IsVisible="False"  
-                                
+                                IsVisible="False"                                                                  
                                 Unfocused="claim_minutes_Unfocused"
                                 HorizontalOptions="FillAndExpand"
                                 />
@@ -140,7 +139,7 @@
 
 
                         <Grid Grid.Row="4" MinimumHeightRequest="40" BackgroundColor="White">
-                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                            <!--<TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="shift"                        
                          PlaceholderColor="LightGray"
                           Placeholder="Shift" 
@@ -148,8 +147,23 @@
                           ImageWidth="35"   
                            LineColor="Gray"
                            Text="{Binding ShiftName}"
+                        HorizontalOptions="FillAndExpand"/>-->
+
+
+                            <TTcontrols:TwoImagePicker TextColor="Gray"  
+                             x:Name="dropdownShift"
+                           Image="shift"   
+                           Image1="drop_down"
+                            Title="Shift"    
+                            ImageAlignment="Left"
+                           ImageHeight="35"   
+                             ImageHeight1="20"
+                            ImageWidth1="20"
+                           ImageWidth="35"   
+                           LineColor="Gray"
+                            ItemDisplayBinding="{Binding ShiftName}"   
+                           SelectedIndexChanged="dropdownShift_SelectedIndexChanged"
                         HorizontalOptions="FillAndExpand"/>
-                            
                         </Grid>
                         
 
@@ -211,11 +225,13 @@
 
                         <Grid Grid.Row="7" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="plant"                        
+                           Image="plant"    
+                              x:Name="XFentPlantId"
                          PlaceholderColor="LightGray"
                           Placeholder="plant" 
                          ImageHeight="35"
                           ImageWidth="35"   
+                           IsEnabled="False"
                            LineColor="Gray"                         
                         HorizontalOptions="FillAndExpand"/>
 

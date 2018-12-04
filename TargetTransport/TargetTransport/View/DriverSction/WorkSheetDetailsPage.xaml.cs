@@ -80,7 +80,7 @@ namespace TargetTransport.View.DriverSction
 
         private void btnLoadView_Clicked(object sender, EventArgs e)
         {
-            App.NavigationPage.Navigation.PushAsync(new Driver_AddLoadPage());
+            App.NavigationPage.Navigation.PushAsync(new Driver_AddLoadPage(_objDriver_WorkSheetDetailsGetResponse));
         }
 
         private void Button_Clicked(object sender, EventArgs e)

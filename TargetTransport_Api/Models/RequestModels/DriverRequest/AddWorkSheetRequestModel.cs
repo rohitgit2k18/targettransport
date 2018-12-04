@@ -62,6 +62,8 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public int CompanyId { get; set; }
         public string CustomerSign { get; set; }
         public string CustomerName { get; set; }
+        public string Plantid { get; set; }
+       
     }
     public class Toll
     {

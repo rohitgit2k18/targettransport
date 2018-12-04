@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TargetTransport.Helpers;
 using TargetTransport.Models;
+using TargetTransport.ViewModels;
 using TargetTransport_Api.ApiHandler;
 using TargetTransport_Api.Models;
 using TargetTransport_Api.Models.RequestModels.DriverRequest;
@@ -34,6 +35,7 @@ namespace TargetTransport.View.DriverSction
         private Driver_GetClientsResponse _objDriver_GetClientsResponse;
         private AddWorkSheetNumberResponse _objAddWorkSheetNumberResponse;
         private AddWorkSheetNumberRequest _objAddWorkSheetNumberRequest;
+        private ShiftDataViewModel _objShiftDataViewModel;
         private HeaderModel _objHeaderModel;
         private string _baseUrlLoadTypes;
         private string _baseUrlVehicle;
@@ -55,6 +57,8 @@ namespace TargetTransport.View.DriverSction
             _objLoadCompanySiteResponse = new LoadCompanySiteResponse();
             _objDriver_GetClientsResponse = new Driver_GetClientsResponse();
             _objAddWorkSheetNumberResponse = new AddWorkSheetNumberResponse();
+            _objShiftDataViewModel = new ShiftDataViewModel();
+            dropdownShift.ItemsSource = _objShiftDataViewModel.GetShiftType();
             _objHeaderModel = new HeaderModel();
             _apiServices = new RestApi();
             _baseUrlLoadTypes = Settings.Url + Domain.GetLoadTypesApiConstant;
@@ -63,6 +67,7 @@ namespace TargetTransport.View.DriverSction
             _baseUrlGetClients = Settings.Url + Domain.GetClientsApiConstant;
             _baseUrlAddWorkSheet = Settings.Url + Domain.AddWorkSheetApiConstant;
             _baseUrlGetWorksheetNo = Settings.Url + Domain.GetWorksheetNumberApiConstant;
+
             BindingContext = _objAddWorksheetRequestModel;
            // xyz("WKA009");
 
@@ -70,68 +75,14 @@ namespace TargetTransport.View.DriverSction
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            claim_minutes.Time = DateTime.Now.TimeOfDay;
+            claim_minutes.Format = "hh:mm";
             LoadWorkSheetNumber();
             LoadClients();
-            LoadVehicleData();
+           // LoadVehicleData();
             GetLoadTypes();
         }
-        //public string xyz( string str)
-        //{
-
-        //    //((Entry)sender).TextColor = IsValid ? Color.Default : Color.Red
-
-        //    if (str == null) {
-        //        str = "WKA001";
-        //    }
-        //    char[] strArr = str.ToCharArray();
-        //    var inc = 1;
-        //        string newStr = "";
-        //        for (var i = strArr.Length - 1; i >= 0; i--)
-        //        {
-        //            if (Char.IsNumber(strArr[i]))
-        //            {
-        //                var tempNum = Convert.ToInt32(strArr[i]) + inc;
-        //                if (tempNum == 10)
-        //                {
-        //                    inc = 1;
-        //                    var addValue = i!=0 ? 0 : 10;
-        //                    newStr = addValue + newStr;
-        //                }
-        //                else
-        //                {
-        //                    inc = 0;
-        //                    newStr = tempNum + newStr;
-        //                }
-
-        //            }
-        //            else if (inc==1)
-        //            {
-        //            var addStr = Base   ToBase36String(strArr[i]) + 1.ToString("36");
-        //            addStr = Regex.Replace(addStr,@"/ 0 / g", "a");
-        //            addStr = addStr.ToUpper();
-        //                if (addStr.Length == 2)
-        //                {
-        //                if (i!=0)
-        //                {
-        //                    addStr = "A";
-        //                }
-        //                    inc = 1;
-        //                }
-        //                else
-        //                {
-        //                    inc = 0;
-        //                }
-
-        //                newStr = addStr + newStr;
-        //            }
-        //            else
-        //            {
-        //                newStr = strArr[i] + newStr;
-        //            }
-        //        }
-        //        return newStr;
-
-        //}
+       
         private async void LoadWorkSheetNumber()
         {
             try
@@ -238,7 +189,8 @@ namespace TargetTransport.View.DriverSction
                 _objDriver_SelectVehicleRequest = new Driver_SelectVehicleRequest
                 {
                     Id = Settings.UserId,
-                    CompanyId = Settings.CompanyId
+                    CompanyId = Settings.CompanyId,
+                    ClientId= _objAddWorksheetRequestModel.ClientId
                 };
                 await Navigation.PushPopupAsync(new LoadingPopPage());
                 _objDriverSelectVehicleResonse = await _apiServices.GetDriverSelectVehicleListAsync(new Get_API_Url().VehicleListApi(_baseUrlVehicle), true, _objHeaderModel, _objDriver_SelectVehicleRequest);
@@ -405,6 +357,7 @@ namespace TargetTransport.View.DriverSction
                 DependencyService.Get<IToast>().Show("please select LoadType!");
             }
         }
+
         private void dropdownCustomerName_SelectedIndexChanged(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
@@ -418,6 +371,7 @@ namespace TargetTransport.View.DriverSction
                 _objAddWorksheetRequestModel.ClientId = ClientId;
                 _objAddWorksheetRequestModel.ClientName = CustomernameData.ClientName;
                 LoadComapnySites();
+                LoadVehicleData();
             }
             else
             {
@@ -464,6 +418,30 @@ namespace TargetTransport.View.DriverSction
                 _objAddWorksheetRequestModel.VehicleId = SelectedVehicleData.Id;
                 _objAddWorksheetRequestModel.VechicleName = SelectedVehicleData.VehicleTypeName;
                 _objAddWorksheetRequestModel.Rego = SelectedVehicleData.Rego;
+                if(!string.IsNullOrEmpty(SelectedVehicleData.PlantId))
+                {
+                    XFentPlantId.Text = SelectedVehicleData.PlantId;
+                }
+               
+               
+            }
+            else
+            {
+                DependencyService.Get<IToast>().Show("please select LoadType!");
+            }
+        }
+
+        private void dropdownShift_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+                var data = picker.Items[picker.SelectedIndex];
+                var SelectedShiftData = picker.SelectedItem as ShiftDataModel;
+                _objAddWorksheetRequestModel.ShiftType = SelectedShiftData.ShiftId;
+               
             }
             else
             {

@@ -55,7 +55,9 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public string ChecklistName { get; set; }
     public object ScheduelName { get; set; }
     public object EmployeeId { get; set; }
-}
+        public string PlantId { get; set; }
+        public string FleetNumber { get; set; }
+    }
     public class VehicleResponse
     {
        

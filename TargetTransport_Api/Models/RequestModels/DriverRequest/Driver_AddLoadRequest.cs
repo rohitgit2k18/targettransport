@@ -8,6 +8,10 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
 {
   public class Driver_AddLoadRequest
     {
+        public Driver_AddLoadRequest()
+        {
+            TollIds = new List<long>();
+        }
         public string WorkSheetId { get; set; }
         public DateTime LoadingDate { get; set; }
         public string LoadFrom { get; set; }
@@ -25,6 +29,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public string JobType { get; set; }
         public string Start { get; set; }
         public string Finish { get; set; }
+        public List<long> TollIds { get; set; }
         public string Total { get; set; }
         public string CustomerSign { get; set; }
         public string Comments { get; set; }

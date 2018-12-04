@@ -26,6 +26,7 @@ namespace TargetTransport.View.DriverSction
         private Driver_TollsListResponse _objDriver_TollsListResponse;
         private Driver_TollsListRequest _objDriver_TollsListRequest;
         private Driver_AddLoadRequest _objDriver_AddLoadRequest;
+        private Driver_WorkSheetDetailsGetResponse _objDriver_WorkSheetDetailsGetResponse;
         private HeaderModel _objHeaderModel;
         private string _baseUrl;
         private string _baseUrlPostdata;
@@ -33,14 +34,16 @@ namespace TargetTransport.View.DriverSction
         private string _baseUrlTollsList;
         TimePicker _Picker;
         private RestApi _apiServices;
+       
         #endregion
-        public Driver_AddLoadPage()
+        public Driver_AddLoadPage(Driver_WorkSheetDetailsGetResponse objDriver_WorkSheetDetailsGetResponse)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             _objDriver_LoadTypeResponse = new Driver_LoadTypeResponse();
             _objDriver_TollsListResponse = new Driver_TollsListResponse();
             _objDriver_AddLoadRequest = new Driver_AddLoadRequest();
+            _objDriver_WorkSheetDetailsGetResponse = objDriver_WorkSheetDetailsGetResponse;
             BindingContext = _objDriver_AddLoadRequest;
             _objHeaderModel = new HeaderModel();
             _apiServices = new RestApi();
@@ -53,7 +56,33 @@ namespace TargetTransport.View.DriverSction
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            
+        }
+        private void LoadWorkSheetData()
+        {
+            try
+            {
+                var existingLoadType = (from result in _objDriver_LoadTypeResponse.Response.LoadTypes
+                                        where result.Id == _objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.LoadTypeName
+                                        select result).FirstOrDefault();
+                if (existingLoadType != null)
+                {
+                    int i = _objDriver_LoadTypeResponse.Response.LoadTypes.IndexOf(existingLoadType);
+                    dropdownLoadType.SelectedIndex = i;
+                }
+                if (!string.IsNullOrEmpty(_objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.SiteName))
+                {
+                    XfEntLoadFrom.Text = _objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.SiteName;
+                }
+                else
+                {
+                    _objDriver_AddLoadRequest.LoadFrom = XfEntLoadFrom.Text;
+                }
+            }
+            catch(Exception ex)
+            {
+                var msg = ex.Message;
+            }
         }
         private async void btnLoadViewDetailsSubmit_Clicked(object sender, EventArgs e)
         {
@@ -162,7 +191,9 @@ namespace TargetTransport.View.DriverSction
                     //await App.NavigationPage.Navigation.PushAsync(new Driver_SignatureScreenPage(DailyCheckListID));
                     dropdownTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
                     DependencyService.Get<IToast>().Show(_objDriver_TollsListResponse.Response.Message);
+                   
                     await Navigation.PopAllPopupAsync();
+
                 }
                 else
                 {
@@ -174,6 +205,10 @@ namespace TargetTransport.View.DriverSction
             {
                 await Navigation.PopAllPopupAsync();
                 var msg = ex.Message;
+            }
+            finally
+            {
+                LoadWorkSheetData();
             }
         }
 
@@ -203,7 +238,10 @@ namespace TargetTransport.View.DriverSction
             {
                 var data = picker.Items[picker.SelectedIndex];
                 var Tolls = picker.SelectedItem as AccountSettingTollList;
-                _objDriver_AddLoadRequest.TollId = Tolls.AccountId.ToString();
+               // _objDriver_AddLoadRequest.TollId = Tolls.AccountId.ToString();
+
+                
+                _objDriver_AddLoadRequest.TollIds.Add(Tolls.AccountId);                
             }
             else
             {
@@ -285,6 +323,33 @@ namespace TargetTransport.View.DriverSction
             });
         }
 
+        private void Entrykilometer_finish_Unfocused(object sender, FocusEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(_objDriver_AddLoadRequest.Start) && !string.IsNullOrEmpty(_objDriver_AddLoadRequest.Finish))
+                {
+                    if (Convert.ToInt32(_objDriver_AddLoadRequest.Finish)> Convert.ToInt32(_objDriver_AddLoadRequest.Start))
+                    {
+                        kmstxtbx.Text = ((Convert.ToInt32(_objDriver_AddLoadRequest.Finish)) - (Convert.ToInt32(_objDriver_AddLoadRequest.Start))).ToString();
+
+                    }
+                    else
+                    {
+                        DisplayAlert("Alert", "kilometer finish can not be less than kilometer start!", "ok");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Alert", "Kilometer start or kilometer finish can not be null or Empty!", "ok");
+                }
+            }
+            catch(Exception ex)
+            {
+                var msg = ex.Message;
+            }
+        }
+
         //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
         //{
         //    Entrykilometer_start.IsEnabled = true;
@@ -298,7 +363,7 @@ namespace TargetTransport.View.DriverSction
         //    {
         //        Entrykilometer_start.IsEnabled = false;
         //        kilometer_start.Focus();
-               
+
         //    });
         //}
 

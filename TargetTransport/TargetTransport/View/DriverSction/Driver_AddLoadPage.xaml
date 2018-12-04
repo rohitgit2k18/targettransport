@@ -84,13 +84,13 @@
 
                         <Grid Grid.Row="1" MinimumHeightRequest="40" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="load_from"                        
+                           Image="load_from"   
+                           x:Name="XfEntLoadFrom"
                          PlaceholderColor="Gray"
                           Placeholder="Load From" 
                          ImageHeight="35"
                           ImageWidth="35"   
-                           LineColor="Gray"
-                           Text="{Binding LoadFrom}"
+                           LineColor="Gray"                           
                         HorizontalOptions="FillAndExpand"/>
                             
                         </Grid>
@@ -173,6 +173,7 @@
                           Placeholder="KM's" 
                          ImageHeight="35"
                           ImageWidth="35"  
+                          IsEnabled="False"
                             Keyboard="Numeric"
                            LineColor="Gray"
                            Text="{Binding KiloMeters}"                                                                                                                                          
@@ -243,6 +244,7 @@
                           Placeholder="W'Time Claim Minutes" 
                          ImageHeight="35"
                           ImageWidth="35"   
+                            Keyboard="Numeric"
                            LineColor="Gray"
                          Text="{Binding WaitTimePerMinute}"                              
                         HorizontalOptions="FillAndExpand"/>
@@ -268,6 +270,7 @@
                          PlaceholderColor="Gray"
                           Placeholder="weight" 
                          ImageHeight="35"
+                          Keyboard="Numeric"
                           ImageWidth="35"   
                            LineColor="Gray"
                            Text="{Binding NetWeight}"
@@ -329,6 +332,7 @@
                           Placeholder="Kilometer Start" 
                          ImageHeight="35"
                           ImageWidth="35"   
+                              Keyboard="Numeric"
                            LineColor="Gray"
                             Text="{Binding Start}"                              
                         HorizontalOptions="FillAndExpand"/>
@@ -356,8 +360,9 @@
                           Placeholder="Kilometer Finish" 
                          ImageHeight="35"
                           ImageWidth="35"   
+                           Keyboard="Numeric"
                            LineColor="Gray"
-                           
+                           Unfocused="Entrykilometer_finish_Unfocused"
                             Text="{Binding Finish}"                           
                         HorizontalOptions="FillAndExpand"/>
                             
