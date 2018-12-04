@@ -6,6 +6,7 @@
               xmlns:TTcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
               BackgroundImage="bg.jpg">
     <ContentPage.Content>
+        
         <Grid x:Name="RootLayout">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
@@ -57,9 +58,9 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                           
                             <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
@@ -251,20 +252,10 @@
                         </Grid>
 
 
+                        
+
+
                         <Grid Grid.Row="9" BackgroundColor="White">
-                            <TTcontrols:ImageEntry TextColor="Gray"                        
-                           Image="w_bridge_docket"                        
-                         PlaceholderColor="Gray"
-                          Placeholder="W'Bridge Docket" 
-                         ImageHeight="35"
-                          ImageWidth="35"   
-                           LineColor="Gray"
-                          Text="{Binding BridgeDocket}"
-                        HorizontalOptions="FillAndExpand"/>
-                        </Grid>
-
-
-                        <Grid Grid.Row="10" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="weight"                        
                          PlaceholderColor="Gray"
@@ -279,7 +270,7 @@
                         </Grid>
 
 
-                        <Grid Grid.Row="11" BackgroundColor="White">
+                        <Grid Grid.Row="10" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="claim_minutes"                        
                          PlaceholderColor="Gray"
@@ -293,7 +284,7 @@
                         </Grid>
 
 
-                        <Grid Grid.Row="12" BackgroundColor="White">
+                        <Grid Grid.Row="11" BackgroundColor="White">
                             <TTcontrols:TwoImagePicker TextColor="Gray" 
                                                         x:Name="dropdownTolls"
                            Image="tolls"   
@@ -312,7 +303,7 @@
                         </Grid>
 
 
-                        <Grid Grid.Row="13" BackgroundColor="White">
+                        <Grid Grid.Row="12" BackgroundColor="White">
                             <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_start"
                                 Image="kilometer_start"
@@ -340,7 +331,7 @@
                         </Grid>
 
 
-                        <Grid Grid.Row="14" BackgroundColor="White">
+                        <Grid Grid.Row="13" BackgroundColor="White">
                             <!--<TTcontrols:ImageTimePicker 
                                 x:Name="kilometer_finish"
                                 Image="kilometer_finish"
@@ -367,8 +358,8 @@
                         HorizontalOptions="FillAndExpand"/>
                             
                         </Grid>
-                        <Grid Grid.Row="15" BackgroundColor="White">
-                            <!--<TTcontrols:ImageDatePicker    
+                        <!--<Grid Grid.Row="14" BackgroundColor="White">
+                            --><!--<TTcontrols:ImageDatePicker    
                                 x:Name="LoaddatePicker"
                            Image="select_date"                                                 
                          ImageHeight="30"   
@@ -389,10 +380,10 @@
                            LineColor="Gray"  
                            Focused="Entryselect_date_Focused"
                             Text="{Binding LoadingDate}"                           
-                        HorizontalOptions="FillAndExpand"/>-->
-                        </Grid>
+                        HorizontalOptions="FillAndExpand"/>--><!--
+                        </Grid>-->
 
-                        <Grid Grid.Row="15" BackgroundColor="White">
+                        <Grid Grid.Row="14" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                                                                       
                          PlaceholderColor="Gray"
                           Placeholder="Comments"                          
@@ -401,8 +392,21 @@
                         HorizontalOptions="FillAndExpand"/>
                             
                         </Grid>
-
-
+                        <Grid Grid.Row="15" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="w_bridge_docket"  
+                             x:Name="XFWBDocket"
+                         PlaceholderColor="Gray"
+                          Placeholder="W'Bridge Docket" 
+                         ImageHeight="35"
+                          ImageWidth="35"   
+                          LineColor="Gray"  
+                         Focused="XFWBDocket_Focused"
+                        HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                        <Grid Grid.Row="16" BackgroundColor="White">
+                            <Image x:Name="xfWbDocketImage" HeightRequest="100" HorizontalOptions="Center"/>
+                        </Grid>
                         <Grid Grid.Row="17" BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>

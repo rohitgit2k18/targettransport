@@ -1,4 +1,6 @@
 ﻿using AsNum.XFControls.Services;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
@@ -348,6 +350,58 @@ namespace TargetTransport.View.DriverSction
             {
                 var msg = ex.Message;
             }
+        }
+
+        private async void XFWBDocket_Focused(object sender, FocusEventArgs e)
+        {
+            try
+            {
+              var result=  await DisplayAlert("Alert", "Do you want to go without Uploading the document?", "Yes", "No");
+
+                if (result)
+                {
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                    {
+                        await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                        return;
+                    }
+
+                    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    {
+                        Directory = "Test",
+                        SaveToAlbum = true,
+                        CompressionQuality = 75,
+                        CustomPhotoSize = 50,
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 2000,
+                        DefaultCamera = CameraDevice.Front
+                    });
+
+                    if (file == null)
+                        return;
+
+                    await DisplayAlert("File Location", file.Path, "OK");
+
+                    xfWbDocketImage.Source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        file.Dispose();
+                        return stream;
+                    });
+                    var imageString = Base64Extensions.ConvertToBase64(file.GetStream());
+                    _objDriver_AddLoadRequest.BridgeDocket = imageString;
+                }
+                else
+                {
+
+                }
+            }
+            catch(Exception ex)
+            {
+                var msg = ex.Message;
+            }
+        
+           
         }
 
         //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
