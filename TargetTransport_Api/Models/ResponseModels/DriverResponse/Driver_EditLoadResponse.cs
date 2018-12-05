@@ -35,6 +35,10 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     }
     public class LoadDetails : BaseResponseModel
     {
+        public LoadDetails()
+        {
+          TollIds = new List<long>();
+    }
         public int LoadId { get; set; }
     public int WorkSheetId { get; set; }
     public DateTime? LoadingDate { get; set; }
@@ -50,13 +54,14 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public string ArriveJob { get; set; }
     public string DepartJob { get; set; }
     public double? WaitTimePerMinuteJob { get; set; }
-    public int? TollId { get; set; }
+    public string Comments { get; set; }
+        public List<long> TollIds { get; set; }
+        public int? TollId { get; set; }
     public int? JobType { get; set; }
     public string Start { get; set; }
     public string Finish { get; set; }
     public double? Total { get; set; }
-    public string CustomerSign { get; set; }
-    public object TollIds { get; set; }
+    public string CustomerSign { get; set; }   
     public object Tolls { get; set; }
     public double TotalTollAmount { get; set; }
     public int? CompanyId { get; set; }

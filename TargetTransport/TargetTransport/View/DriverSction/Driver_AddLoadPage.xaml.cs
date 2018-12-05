@@ -75,6 +75,7 @@ namespace TargetTransport.View.DriverSction
                 if (!string.IsNullOrEmpty(_objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.SiteName))
                 {
                     XfEntLoadFrom.Text = _objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.SiteName;
+                    _objDriver_AddLoadRequest.LoadFrom = XfEntLoadFrom.Text;
                 }
                 else
                 {
@@ -379,8 +380,10 @@ namespace TargetTransport.View.DriverSction
 
                     if (file == null)
                         return;
-
+                    
                     await DisplayAlert("File Location", file.Path, "OK");
+
+                    var imageString = Base64Extensions.ConvertToBase64(file.GetStream());
 
                     xfWbDocketImage.Source = ImageSource.FromStream(() =>
                     {
@@ -388,7 +391,7 @@ namespace TargetTransport.View.DriverSction
                         file.Dispose();
                         return stream;
                     });
-                    var imageString = Base64Extensions.ConvertToBase64(file.GetStream());
+                   
                     _objDriver_AddLoadRequest.BridgeDocket = imageString;
                 }
                 else

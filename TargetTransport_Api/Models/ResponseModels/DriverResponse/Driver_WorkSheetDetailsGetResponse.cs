@@ -163,7 +163,8 @@ public bool Approval { get; set; }
 public object ShiftName { get; set; }
 public object PlantId { get; set; }
 public object CustomerSign { get; set; }
-}
+public string SiteOffSite { get; set; }
+    }
 
 public class Toll
 {

@@ -87,7 +87,9 @@ namespace TargetTransport.View.DriverSction
                         if (_objDriver_UpdateLoadResponse.Response.StatusCode == 200)
                         {
                             DependencyService.Get<IToast>().Show(_objDriver_UpdateLoadResponse.Response.Message);
-                            await Navigation.PushPopupAsync(new LoadSignOffPopUp(_objDriver_EditLoadResponse.Response.LoadDetails.LoadId));                         
+                            await App.NavigationPage.Navigation.PushAsync(new WorkSheetDetailsPage());
+                            //await Navigation.PushPopupAsync(new LoadSignOffPopUp(_objDriver_EditLoadResponse.Response.LoadDetails.LoadId));                         
+                            await Navigation.PopAllPopupAsync();
                         }
                         else
                         {
