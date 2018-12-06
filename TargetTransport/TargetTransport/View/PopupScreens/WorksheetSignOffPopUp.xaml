@@ -31,6 +31,7 @@
                         <RowDefinition Height="1"/>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" BackgroundColor="#2E6FBA" HorizontalOptions="FillAndExpand" >
                         <Grid.ColumnDefinitions>
@@ -82,14 +83,28 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="0">
-                                <Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" 
-                                        Text="Skip" FontSize="Medium" TextColor="#2E6FBA" />
+                                <!--<Label  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" 
+                                        Text="Skip" FontSize="Medium" TextColor="#2E6FBA" />-->
                                 <!--<BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" 
                                          BackgroundColor="#2E6FBA"/>-->
                             </StackLayout>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="5" Padding="20,0,20,0">
+                  <Grid Grid.Row="5" Padding="10,0,10,0">
+                    <TimePicker 
+                                 x:Name="OffsetfinishTime"                                                                      
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                HorizontalOptions="FillAndExpand"
+                                 Unfocused="OffsetfinishTime_Unfocused"
+                                 IsVisible="False"/>
+                        <Entry x:Name="XFEntoffsetFinishTime" 
+                               VerticalOptions="Center"
+                               Placeholder="Offset Finish Time"
+                               Focused="XFEntoffsetFinishTime_Focused"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Grid>
+                    <Grid Grid.Row="6" Padding="20,0,20,0">
                         <Button Text="done" 
                                     x:Name="btnSubmit"  
                                     VerticalOptions="Start"

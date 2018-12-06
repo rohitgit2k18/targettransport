@@ -83,6 +83,7 @@ namespace TargetTransport
                     _objDriver_WorkSheetSignOffResponse = await _apiServices.WorkSheetSignOffSignAsync(new Get_API_Url().WorkSheetSignOffSignApi(_baseUrl), true, _objHeaderModel, _objDriver_WorkSheetSignOffRequest);
                     if (_objDriver_WorkSheetSignOffResponse.Response.StatusCode == 200)
                     {
+                        Settings.IsPreStartChecked = false;
                         DependencyService.Get<IToast>().Show(_objDriver_WorkSheetSignOffResponse.Response.Message);
                         await App.NavigationPage.Navigation.PushAsync(new Driver_WorksheetPage());
                         await Navigation.PopAllPopupAsync();
@@ -115,6 +116,23 @@ namespace TargetTransport
 
             // await Navigation.PopAllPopupAsync();
 
+        }
+
+        private void OffsetfinishTime_Unfocused(object sender, FocusEventArgs e)
+        {
+            XFEntoffsetFinishTime.IsEnabled = true;
+            XFEntoffsetFinishTime.Unfocus();
+            XFEntoffsetFinishTime.Text = OffsetfinishTime.Time.ToString();
+        }
+
+        private void XFEntoffsetFinishTime_Focused(object sender, FocusEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                XFEntoffsetFinishTime.IsEnabled = false;
+                OffsetfinishTime.Focus();
+
+            });
         }
     }
 }

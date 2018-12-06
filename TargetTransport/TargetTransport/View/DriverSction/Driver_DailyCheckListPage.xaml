@@ -17,6 +17,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Image VerticalOptions="Center" HorizontalOptions="Center" Source="back.png"/>
@@ -25,7 +26,14 @@
                     </Grid.GestureRecognizers>
                 </Grid>
                 <Grid Grid.Column="1" >
-                    <Label Text="DAILY PRESTART" Margin="-60,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                    <Label Text="DAILY PRESTART" Margin="-30,0,0,0" TextColor="White" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button VerticalOptions="Center"
+                            x:Name="XFBtnSkip"
+                        HorizontalOptions="End" Text="SKIP" 
+                        Clicked="XFBtnSkip_Clicked"
+                        BackgroundColor="#F07430"/>
                 </Grid>
             </Grid>
             <ScrollView Grid.Row="1">
@@ -34,6 +42,7 @@
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -238,6 +247,26 @@
                             <Grid RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="10,5,10,5">
+
+                                    <Entry x:Name="txtOdometer" Placeholder="Odometer" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="10,5,10,5">
+
+                                    <Entry x:Name="txttimimnggs" Placeholder="Engine Hours" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <Grid Grid.Row="6">
+                        <Frame HasShadow="true" CornerRadius="5"   Margin="15,5,15,5">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
@@ -251,7 +280,7 @@
                             </Grid>
                         </Frame>
                     </Grid>
-                    <Grid Grid.Row="6" Margin="15,5,15,5">
+                    <Grid Grid.Row="7" Margin="15,5,15,5">
                         <Button VerticalOptions="Center" 
                                 x:Name="btnSubmitdailyList" 
                                 HorizontalOptions="FillAndExpand"

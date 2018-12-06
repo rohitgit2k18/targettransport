@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TargetTransport_Api.Models.RequestModels;
 
 namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
 {
@@ -12,7 +13,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
         {
             Response = new EditLoadResponse();
         }
-       // public EditLoadResponse Response { get; set; }
+      //  public EditLoadResponse Response { get; set; }
         //  public EditUser Response { get; set; }
         #region Properties
         private EditLoadResponse LoadObject;
@@ -28,12 +29,12 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
             }
             set
             {
-                LoadObject = value; OnPropertyChanged();
+                LoadObject = value; OnPropertyChanged("Response");
             }
         }
         #endregion
     }
-    public class LoadDetails : BaseResponseModel
+    public class LoadDetails : BaseRequestModel
     {
         public LoadDetails()
         {
@@ -71,7 +72,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
         public string JobTypeName { get; set; }
     }
 
-public class EditLoadResponse  : BaseResponseModel
+public class EditLoadResponse  : BaseRequestModel
     {
         public EditLoadResponse()
         {
@@ -79,8 +80,20 @@ public class EditLoadResponse  : BaseResponseModel
         }
 public int StatusCode { get; set; }
 public string Message { get; set; }
-public string Description { get; set; }
-public LoadDetails LoadDetails { get; set; }
+ public string Description { get; set; }
+        private LoadDetails loadDetails;
+        public LoadDetails LoadDetails
+        {
+            get
+            {
+                return loadDetails;
+            }
+            set
+            {
+                loadDetails = value; OnPropertyChanged("loadDetails");
+            }
+        }
+        
 }
 
 

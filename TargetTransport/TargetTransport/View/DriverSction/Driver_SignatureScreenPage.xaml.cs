@@ -67,6 +67,7 @@ namespace TargetTransport.View.DriverSction
                     _objDriver_SignatureResponse = await _apiServices.DriverSignatureAsync(new Get_API_Url().Driver_SignatureApi(_baseUrl), true, _objHeaderModel, _objDriver_SignatureRequest);
                     if (_objDriver_SignatureResponse.Response.statusCode == 200)
                     {
+                        Settings.IsPreStartChecked = true;
                          DependencyService.Get<IToast>().Show(_objDriver_SignatureResponse.Response.Message);
                         await App.NavigationPage.Navigation.PushAsync(new WorkSheetDetailsPage());                       
                         await Navigation.PopAllPopupAsync();

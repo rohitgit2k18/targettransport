@@ -71,6 +71,7 @@ namespace TargetTransport.View.DriverSction
                 var VehicleId = data.VehicleId;
                 Settings.VehicleID = VehicleId;
                 Settings.WorksheetID = WorksheetId;
+                //Settings.PreviousWorksheetID = WorksheetId;
                 Settings.CompanyId = data.ComapnyId;
                 Settings.RegoNo = data.Rego;
                 App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));

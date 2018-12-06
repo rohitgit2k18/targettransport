@@ -1,4 +1,6 @@
 ﻿using AsNum.XFControls.Services;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,8 @@ namespace TargetTransport.View.DriverSction
         private string _baseUrlTollsList;
         private RestApi _apiServices;
         private int LoadID;
+        private bool IsClickedTall = false;
+        private List<long> EditTolls;
         #endregion
         public Driver_EditLoadPage(int loadID)
         {
@@ -42,6 +46,7 @@ namespace TargetTransport.View.DriverSction
             _objDriver_LoadTypeResponse = new Driver_LoadTypeResponse();
             _objDriver_TollsListResponse = new Driver_TollsListResponse();
             _objHeaderModel = new HeaderModel();
+            EditTolls = new List<long>();
             LoadID = loadID;
             _apiServices = new RestApi();
             _baseUrlGetData = Settings.Url + Domain.EditLoadApiConstant;
@@ -72,20 +77,30 @@ namespace TargetTransport.View.DriverSction
                     var existingLoadType = (from result in _objDriver_LoadTypeResponse.Response.LoadTypes
                                        where result.Id == _objDriver_EditLoadResponse.Response.LoadDetails.JobType
                                        select result).FirstOrDefault();
-
-                    var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
-                                        where result.AccountId == _objDriver_EditLoadResponse.Response.LoadDetails.TollId
-                                        select result).FirstOrDefault();
+                    foreach (var Itemes in _objDriver_EditLoadResponse.Response.LoadDetails.TollIds)
+                    {
+                        //var existingToll = (from result in _objDriver_TollsListResponse.Response.AccountSettingTollList
+                        //                    where result.AccountId == Itemes
+                        //                    select result.AccountId).FirstOrDefault();
+                        foreach (var itm in _objDriver_TollsListResponse.Response.AccountSettingTollList)
+                        {
+                            if(itm.AccountId== Itemes)
+                            {
+                                itm.IsTollSelected = true;
+                            }
+                            
+                        }
+                    }
                     if (existingLoadType != null)
                     {
                         int i = _objDriver_LoadTypeResponse.Response.LoadTypes.IndexOf(existingLoadType);
                         dropdownLoadType.SelectedIndex = i;
                     }
-                    if (existingToll != null)
-                    {
-                        int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
-                        dropdownTolls.SelectedIndex = j;
-                    }
+                    //if (existingToll != null)
+                    //{
+                    //    int j = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
+                    //    dropdownTolls.SelectedIndex = j;
+                    //}
                     BindingContext = _objDriver_EditLoadResponse.Response.LoadDetails;
                     DependencyService.Get<IToast>().Show(_objDriver_EditLoadResponse.Response.Message);
                     await Navigation.PopAllPopupAsync();
@@ -147,7 +162,7 @@ namespace TargetTransport.View.DriverSction
                 if (_objDriver_TollsListResponse.Response.StatusCode == 200)
                 {
                     //await App.NavigationPage.Navigation.PushAsync(new Driver_SignatureScreenPage(DailyCheckListID));
-                    dropdownTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
+                    ListViewTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
                     DependencyService.Get<IToast>().Show(_objDriver_TollsListResponse.Response.Message);
                     await Navigation.PopAllPopupAsync();
                     GetLoad();
@@ -207,6 +222,18 @@ namespace TargetTransport.View.DriverSction
         {
             try
             {
+                //_objDriver_EditLoadResponse.Response.LoadDetails.TollIds = null;
+                if(EditTolls.Count>0)
+                {
+                    _objDriver_EditLoadResponse.Response.LoadDetails.TollIds = EditTolls;
+                }
+                _objDriver_EditLoadResponse.Response.LoadDetails.LoadFrom = XfEntLoadFrom.Text;
+                _objDriver_EditLoadResponse.Response.LoadDetails.DeliverTo = deliver_to.Text;
+                _objDriver_EditLoadResponse.Response.LoadDetails.Start = Entrykilometer_start.Text;
+                _objDriver_EditLoadResponse.Response.LoadDetails.NetWeight = Convert.ToDouble(xfEntNetweight.Text);
+                _objDriver_EditLoadResponse.Response.LoadDetails.Finish = Entrykilometer_finish.Text;
+                _objDriver_EditLoadResponse.Response.LoadDetails.KiloMeters = Convert.ToDouble(kmstxtbx.Text);
+                _objDriver_EditLoadResponse.Response.LoadDetails.Comments = xfEntComments.Text;
                 _objHeaderModel.TokenCode = Settings.TokenCode;
                 if(_objDriver_EditLoadResponse.Response.LoadDetails.WaitTimePerMinute>=1)
                 {
@@ -318,6 +345,135 @@ namespace TargetTransport.View.DriverSction
             });
         }
 
+        private void Entrykilometer_finish_Unfocused(object sender, FocusEventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(_objDriver_EditLoadResponse.Response.LoadDetails.Start) && !string.IsNullOrEmpty(_objDriver_EditLoadResponse.Response.LoadDetails.Finish))
+                {
+                    if (Convert.ToInt32(_objDriver_EditLoadResponse.Response.LoadDetails.Finish) > Convert.ToInt32(_objDriver_EditLoadResponse.Response.LoadDetails.Start))
+                    {
+                        kmstxtbx.Text = ((Convert.ToInt32(_objDriver_EditLoadResponse.Response.LoadDetails.Finish)) - (Convert.ToInt32(_objDriver_EditLoadResponse.Response.LoadDetails.Start))).ToString();
+                        _objDriver_EditLoadResponse.Response.LoadDetails.NetWeight = Convert.ToDouble(kmstxtbx.Text);
+                    }
+                    else
+                    {
+                        DisplayAlert("Alert", "kilometer finish can not be less than kilometer start!", "ok");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Alert", "Kilometer start or kilometer finish can not be null or Empty!", "ok");
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+        }
+
+
+
+        private async void XFBtnTapCamera_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await DisplayAlert("Alert", "Do you want to go without Uploading the document?", "Yes", "No");
+
+                if (result)
+                {
+                    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                    {
+                        await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                        return;
+                    }
+
+                    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                    {
+                        Directory = "Test",
+                        SaveToAlbum = true,
+                        CompressionQuality = 75,
+                        CustomPhotoSize = 50,
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 2000,
+                        DefaultCamera = CameraDevice.Front
+                    });
+
+                    if (file == null)
+                        return;
+
+                    await DisplayAlert("File Location", file.Path, "OK");
+
+                    var imageString = Base64Extensions.ConvertToBase64(file.GetStream());
+                    xfGridShowDocket.IsVisible = true;
+                    xfWbDocketImage.Source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        file.Dispose();
+                        return stream;
+                    });
+
+                    _objDriver_EditLoadResponse.Response.LoadDetails.BridgeDocket = imageString;
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
+        }
+
+        private void XFBtnTapTolls_Tapped(object sender, EventArgs e)
+        {
+
+            // await Navigation.PushPopupAsync(new AddTollsPage(_objDriver_TollsListResponse));
+            if (!IsClickedTall)
+            {
+                XFFrameTollsView.IsVisible = true;
+                IsClickedTall = true;
+                if (_objDriver_TollsListResponse.Response.AccountSettingTollList.Count > 0)
+                {
+                    ListViewTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
+                }
+                else
+                {
+                    DisplayAlert("Alert!", "No Tolls data Exist!", "ok");
+                }
+            }
+            else
+            {
+                XFFrameTollsView.IsVisible = false;
+                IsClickedTall = false;
+            }
+
+
+        }
+
+        private void XFSwitchTolls_Toggled(object sender, ToggledEventArgs e)
+        {
+            var picker = (Switch)sender;
+            var xy = picker.BindingContext;
+            var data = xy as AccountSettingTollList;
+
+
+            var existingToll = (from result in EditTolls
+                                where result == data.AccountId
+                                select result).FirstOrDefault();
+            if (existingToll > 0)
+            {
+                // int i = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
+                EditTolls.Remove(data.AccountId);
+            }
+            else
+            {
+                EditTolls.Add(data.AccountId);
+            }
+
+        }
+
         //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)
         //{
         //    Entrykilometer_start.IsEnabled = true;
@@ -352,22 +508,22 @@ namespace TargetTransport.View.DriverSction
         //    });
         //}
 
-        private void LoaddatePicker_Unfocused(object sender, FocusEventArgs e)
-        {
-            Entryselect_date.IsEnabled = true;
-            Entryselect_date.Unfocus();
-            Entryselect_date.Text = LoaddatePicker.Date.ToString();
-        }
+        //private void LoaddatePicker_Unfocused(object sender, FocusEventArgs e)
+        //{
+        //    Entryselect_date.IsEnabled = true;
+        //    Entryselect_date.Unfocus();
+        //    Entryselect_date.Text = LoaddatePicker.Date.ToString();
+        //}
 
-        private void Entryselect_date_Focused(object sender, FocusEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                Entryselect_date.IsEnabled = false;
-                LoaddatePicker.Focus();
+        //private void Entryselect_date_Focused(object sender, FocusEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        Entryselect_date.IsEnabled = false;
+        //        LoaddatePicker.Focus();
 
-            });
-        }
+        //    });
+        //}
 
         private void BackButtonTapprd(object sender, EventArgs e)
         {

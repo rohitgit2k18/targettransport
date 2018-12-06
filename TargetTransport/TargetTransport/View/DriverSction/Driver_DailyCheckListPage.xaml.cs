@@ -306,5 +306,26 @@ namespace TargetTransport.View.DriverSction
                 var msg = ex.Message;
             }
         }
+
+        private void XFBtnSkip_Clicked(object sender, EventArgs e)
+        {
+            if (Settings.PreviousWorksheetID == Settings.WorksheetID)
+            {
+                if (Settings.IsPreStartChecked)
+                {
+                    App.NavigationPage.Navigation.PushAsync(new WorkSheetDetailsPage());
+                }
+                else
+                {
+                    DisplayAlert("Alert!", "You have not completed the prestart for this WorkSheet!", "ok");
+                }
+                
+            }
+            else
+            {
+                DisplayAlert("Alert!", "You have not completed the prestart for this WorkSheet!", "ok");
+
+            }
+        }
     }
 }

@@ -452,5 +452,45 @@ namespace TargetTransport.Helpers
             }
         }
         #endregion
+
+        #region IsPreStartChecked
+
+        private const string ispreStartChecked = "ispreStartChecked_key";
+        private static readonly bool ispreStartCheckedDefault = false;
+
+
+        public static bool IsPreStartChecked
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("ispreStartChecked", ispreStartCheckedDefault);
+            }
+            set
+            { AppSettings.AddOrUpdateValue("ispreStartChecked", value); }
+        }
+
+
+        #endregion
+
+        #region Setting PreviousWorksheetID
+
+        private const string previousworksheetId = "previousworksheetId_key";
+        private static readonly int previousworksheetIdDefault = 0;
+
+
+
+
+        public static int PreviousWorksheetID
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(previousworksheetId, previousworksheetIdDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(previousworksheetId, value);
+            }
+        }
+        #endregion
     }
 }

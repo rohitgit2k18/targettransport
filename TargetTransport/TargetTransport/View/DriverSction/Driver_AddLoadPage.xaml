@@ -399,7 +399,7 @@
 
                         </Grid>
                         <Grid Grid.Row="18" BackgroundColor="White">
-                            <Grid.ColumnDefinitions>
+                            <!--<Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
@@ -417,7 +417,7 @@
                                        TextColor="Gray" 
                                        FontSize="Medium"
                                        VerticalOptions="Center"/>
-                            </Grid>
+                            </Grid>-->
                         </Grid>
                     </Grid>
                 </Frame>

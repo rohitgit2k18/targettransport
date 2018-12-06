@@ -59,7 +59,7 @@ namespace TargetTransport.View.DriverSction
                 {
                     //await App.NavigationPage.Navigation.PushAsync(new Driver_SignatureScreenPage(DailyCheckListID));
                     BindingContext = _objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails;
-                    
+                    Settings.PreviousWorksheetID = _objDriver_WorkSheetDetailsGetResponse.Response.WorksheetDetails.Id;
                     LoadList.ItemsSource = _objDriver_WorkSheetDetailsGetResponse.Response.AllLoadList;
                     DependencyService.Get<IToast>().Show("Sucess!");
                     await Navigation.PopAllPopupAsync();
