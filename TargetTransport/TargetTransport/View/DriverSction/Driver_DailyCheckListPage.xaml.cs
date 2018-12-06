@@ -157,13 +157,18 @@ namespace TargetTransport.View.DriverSction
                 _objDriver_DailyCheckListGetResponse = await _apiServices.DriverDailyCheckListGetAsync(new Get_API_Url().Driver_DailyCheckListApi(_baseUrl), true, _objHeaderModel, _objDriver_DailyCheckListGetRequest);
                 if (_objDriver_DailyCheckListGetResponse.Response.StatusCode == 200)
                 {
+                    foreach(var itm in _objDriver_DailyCheckListGetResponse.Response.CheckListList)
+                    {
+                        
+                        itm.IsChecked = false;
+                    }
                     Settings.RegoNo = _objDriver_DailyCheckListGetResponse.Response.RegoNo;
                     sepListView.FlowItemsSource = _objDriver_DailyCheckListGetResponse.Response.CheckListList;
-                    foreach(var items in _objDriver_DailyCheckListGetResponse.Response.QuestionList)
+                    foreach (var items in _objDriver_DailyCheckListGetResponse.Response.QuestionList)
                     {
-                        items.LoadAnswerOptions= RbtnList;
+                        items.LoadAnswerOptions = RbtnList;
                     }
-                 
+
                     QuestionWithOptionList.ItemsSource = _objDriver_DailyCheckListGetResponse.Response.QuestionList;
                     DependencyService.Get<IToast>().Show("Sucess");
                    // WorksheetList.ItemsSource = _objDriverWorkSheetListResponse.Response.WorksheetListByEmployee;
@@ -182,26 +187,26 @@ namespace TargetTransport.View.DriverSction
             }
         }
       
-        private async void SendPostData()
-        {
-            try
-            {
+        //private async void SendPostData()
+        //{
+        //    try
+        //    {
 
-            }
-            catch(Exception ex)
-            {
-                var msg = ex.Message;
-            }
-        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        var msg = ex.Message;
+        //    }
+        //}
         private void CheckBox_CheckChanged(object sender, EventArgs e)
         {
             try
             {                           
-                var selectedItem = ((AsNum.XFControls.CheckBox)sender);              
+                var selectedItem = ((Switch)sender);              
                 var QuestionId = selectedItem.BindingContext;
                 var chkbxobj = QuestionId.GetType();
                 var SelectedId = chkbxobj.GetProperty("id").GetValue(QuestionId);
-                if(selectedItem.Checked==true)
+                if(selectedItem.IsToggled==true)
                 {
                     if (Convert.ToInt32(SelectedId) > 0)
                         CheckBoxObj.Add(Convert.ToInt32(SelectedId));
@@ -256,6 +261,50 @@ namespace TargetTransport.View.DriverSction
         private void BackButtonTap_Tapped(object sender, EventArgs e)
         {
             App.NavigationPage.Navigation.PopAsync();
+        }
+
+        private void XFCbxSelectAll_CheckChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var selectedItem = ((AsNum.XFControls.CheckBox)sender);
+              
+                if (selectedItem.Checked == true)
+                {
+                    sepListView.FlowItemsSource = null;
+
+                    foreach (var Items in _objDriver_DailyCheckListGetResponse.Response.CheckListList)
+                    {
+                        Items.IsChecked = true;
+                        
+                    }
+
+                    Device.BeginInvokeOnMainThread(() => {
+                        
+                        sepListView.FlowItemsSource = _objDriver_DailyCheckListGetResponse.Response.CheckListList;
+
+                                                
+                    });
+                      
+                }
+                else
+                {
+                    sepListView.FlowItemsSource = null;
+                    foreach (var Items in _objDriver_DailyCheckListGetResponse.Response.CheckListList)
+                    {
+                        Items.IsChecked = false;
+                       
+                    }
+                    Device.BeginInvokeOnMainThread(() => {
+
+                        sepListView.FlowItemsSource = _objDriver_DailyCheckListGetResponse.Response.CheckListList;
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
         }
     }
 }

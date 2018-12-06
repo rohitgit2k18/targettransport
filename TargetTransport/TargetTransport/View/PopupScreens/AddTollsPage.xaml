@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="TargetTransport.AddTollsPage">
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#9cdaf1"/>
+                <Setter Property="TextColor" Value="#7dbbe6"/>
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <!--<ScrollView
+    HorizontalOptions="Center"
+    VerticalOptions="Center">-->
+    <Grid  HorizontalOptions="Center"
+    VerticalOptions="Center">
+        <AbsoluteLayout>
+            <Frame
+                
+        x:Name="FrameContainer"        
+        HorizontalOptions="Center"
+                
+        BackgroundColor="White"
+                Margin="10"
+                Padding="-20,-20,-20,-20"
+               >
+                <Grid Margin="40,40,40,0" BackgroundColor="White">
+                <ListView x:Name="ListViewTolls" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding TollPoint}"  />
+                                    </StackLayout>
+                                        <Switch IsToggled="{Binding IsTollSelected}" x:Name="XFSwitchTolls" Toggled="XFSwitchTolls_Toggled"  Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+              
+            </Frame>
+            <ContentView
+          AbsoluteLayout.LayoutFlags="PositionProportional"
+          AbsoluteLayout.LayoutBounds="1, 0, -1, -1">
+            </ContentView>
+        </AbsoluteLayout>
+    </Grid>
+    <!--</ScrollView>-->
+</pages:PopupPage>

@@ -94,9 +94,11 @@
                         <Grid Grid.Column="0">
                             <StackLayout Orientation="Horizontal" >
                                 <ctrls:CheckBox 
-                                Checked="False"                                                                
+                                Checked="False"  
+                                    x:Name="XFCbxSelectAll"
                                 VerticalOptions="Center"
-                                 ShowLabel="True"                                                               
+                                 ShowLabel="True"   
+                                     CheckChanged="XFCbxSelectAll_CheckChanged"
                                 OnImg="select_all.png"
                                 OffImg="unselected.png"  />
                                 <Label Text="Select All" TextColor="#2E6FBA" FontSize="Small" VerticalOptions="Center" />
@@ -122,19 +124,21 @@
                         </Grid.RowDefinitions>
                         <Frame HasShadow="true" Grid.Row="0" CornerRadius="5"   Margin="10,5,10,5">
                             <Grid>
-                                <flv:FlowListView FlowColumnCount="2" RowHeight="30"  SeparatorVisibility="None" x:Name="sepListView" HasUnevenRows="True" >
+                                <flv:FlowListView FlowColumnCount="2" RowHeight="30"    SeparatorVisibility="None" x:Name="sepListView" HasUnevenRows="True" >
                                     <flv:FlowListView.FlowColumnTemplate>
                                         <DataTemplate>
 
                                             <StackLayout Orientation="Horizontal" >
-                                                <ctrls:CheckBox 
-                                Checked="False"                                                                
+                                                <Switch Toggled="CheckBox_CheckChanged" IsToggled="{Binding IsChecked}"/>
+                                                <Label Text="{Binding ChecklistName}"/>
+                                                <!--<ctrls:CheckBox 
+                                Checked="{Binding IsChecked}"                                                                
                                 VerticalOptions="Center"
-                                 ShowLabel="True"  
+                                 ShowLabel="True"                                
+                                 Text="{Binding ChecklistName}" 
                                 CheckChanged="CheckBox_CheckChanged"
-                                 Text="{Binding ChecklistName}"                                             
-                                OnImg="checkbox_ticked.png"
-                                OffImg="checkbox.png"  />
+                                OnImg="{Binding onImg}"                                                  
+                                OffImg="{Binding offImg}"  />-->
                                             </StackLayout>
                                         </DataTemplate>
                                     </flv:FlowListView.FlowColumnTemplate>
@@ -159,7 +163,7 @@
                                                             <Label Text="{Binding QuestionName}" TextColor="Black" FontSize="Small"/>
                                                             <RBcontrols:BindableRadioGroup   x:Name="RadioCheck" 
                                                                                              Orientation="Horizontal"
-                                                                                             ItemsSource="{Binding LoadAnswerOptions}"
+                                                                                             ItemsSource="{Binding LoadAnswerOptions}"                                                                                             
                                                                                               CheckedChanged="RadioCheck_CheckedChanged"/>            
                                                         </StackLayout>
                                                     </Grid>

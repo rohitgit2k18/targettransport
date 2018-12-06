@@ -36,6 +36,7 @@ namespace TargetTransport.View.DriverSction
         private string _baseUrlTollsList;
         TimePicker _Picker;
         private RestApi _apiServices;
+        private bool IsClickedTall = false;
        
         #endregion
         public Driver_AddLoadPage(Driver_WorkSheetDetailsGetResponse objDriver_WorkSheetDetailsGetResponse)
@@ -192,7 +193,7 @@ namespace TargetTransport.View.DriverSction
                 if (_objDriver_TollsListResponse.Response.StatusCode == 200)
                 {
                     //await App.NavigationPage.Navigation.PushAsync(new Driver_SignatureScreenPage(DailyCheckListID));
-                    dropdownTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
+                    
                     DependencyService.Get<IToast>().Show(_objDriver_TollsListResponse.Response.Message);
                    
                     await Navigation.PopAllPopupAsync();
@@ -353,11 +354,13 @@ namespace TargetTransport.View.DriverSction
             }
         }
 
-        private async void XFWBDocket_Focused(object sender, FocusEventArgs e)
+       
+
+        private async void XFBtnTapCamera_Tapped(object sender, EventArgs e)
         {
             try
             {
-              var result=  await DisplayAlert("Alert", "Do you want to go without Uploading the document?", "Yes", "No");
+                var result = await DisplayAlert("Alert", "Do you want to go without Uploading the document?", "Yes", "No");
 
                 if (result)
                 {
@@ -380,18 +383,18 @@ namespace TargetTransport.View.DriverSction
 
                     if (file == null)
                         return;
-                    
+
                     await DisplayAlert("File Location", file.Path, "OK");
 
                     var imageString = Base64Extensions.ConvertToBase64(file.GetStream());
-
+                    xfGridShowDocket.IsVisible = true;                   
                     xfWbDocketImage.Source = ImageSource.FromStream(() =>
                     {
                         var stream = file.GetStream();
                         file.Dispose();
                         return stream;
                     });
-                   
+
                     _objDriver_AddLoadRequest.BridgeDocket = imageString;
                 }
                 else
@@ -399,12 +402,58 @@ namespace TargetTransport.View.DriverSction
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var msg = ex.Message;
             }
-        
+        }
+
+        private  void XFBtnTapTolls_Tapped(object sender, EventArgs e)
+        {
            
+            // await Navigation.PushPopupAsync(new AddTollsPage(_objDriver_TollsListResponse));
+            if (!IsClickedTall)
+            {
+                XFFrameTollsView.IsVisible = true;
+                IsClickedTall = true;
+                if ( _objDriver_TollsListResponse.Response.AccountSettingTollList.Count>0)
+                {
+                    ListViewTolls.ItemsSource = _objDriver_TollsListResponse.Response.AccountSettingTollList;
+                }
+                else
+                {
+                    DisplayAlert("Alert!", "No Tolls data Exist!", "ok");
+                }
+            }
+            else
+            {
+                XFFrameTollsView.IsVisible = false;
+                IsClickedTall = false;
+            }
+
+           
+        }
+
+        private void XFSwitchTolls_Toggled(object sender, ToggledEventArgs e)
+        {
+            var picker = (Switch)sender;
+            var xy = picker.BindingContext;
+            var data = xy as AccountSettingTollList;
+
+            
+            var existingToll = (from result in _objDriver_AddLoadRequest.TollIds
+                                where result == data.AccountId
+                                select result).FirstOrDefault();
+            if (existingToll >0 )
+            {
+                // int i = _objDriver_TollsListResponse.Response.AccountSettingTollList.IndexOf(existingToll);
+                _objDriver_AddLoadRequest.TollIds.Remove(data.AccountId);
+            }
+            else
+            {
+                _objDriver_AddLoadRequest.TollIds.Add(data.AccountId);
+            }
+            
         }
 
         //private void kilometer_start_Unfocused(object sender, FocusEventArgs e)

@@ -50,6 +50,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public object SearchKey { get; set; }
+        public bool IsTollSelected { get; set; }
         public int Limit { get; set; }
         public int OffSet { get; set; }
         public DateTime FromDate { get; set; }

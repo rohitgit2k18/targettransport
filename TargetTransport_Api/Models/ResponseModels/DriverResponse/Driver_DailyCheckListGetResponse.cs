@@ -45,6 +45,9 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
     public bool IsDeleted { get; set; }
     public string SearchKey { get; set; }
     public int Limit { get; set; }
+    public bool IsChecked { get; set; }
+        public string onImg { get; set; }
+        public string offImg { get; set; }
     public int OffSet { get; set; }
     }
 
