@@ -23,8 +23,11 @@ namespace TargetTransport.View.DriverSction
         #region variable Declaration
         private DriverWorkSheetListResponse _objDriverWorkSheetListResponse;
         private DriverWorkSheetListRequest _objDriverWorkSheetListRequest;
+        private DriverActualStartAndEndTimeRequest _objDriverActualStartAndEndTimeRequest;
+        private DriverActualStartAndEndTimeResponse _objDriverActualStartAndEndTimeResponse;
         private HeaderModel _objHeaderModel;
         private string _baseUrl;
+        private string _baseUrlDriverActualStartAndEndTime;
         private string Orderby;
         private RestApi _apiServices;
         #endregion
@@ -35,8 +38,11 @@ namespace TargetTransport.View.DriverSction
             NavigationPage.SetHasNavigationBar(this, false);
             _apiServices = new RestApi();
             _baseUrl = Settings.Url + Domain.DriverWorkSheetListApiConstant;
+            _baseUrlDriverActualStartAndEndTime = Settings.Url + Domain.DriverActualStartAndEndTimeApiConstant;
             _objHeaderModel = new HeaderModel();
             _objDriverWorkSheetListResponse = new DriverWorkSheetListResponse();
+            
+            _objDriverActualStartAndEndTimeResponse = new DriverActualStartAndEndTimeResponse();
             Orderby = "DESC";
            // LoadPageData();
         }
@@ -62,25 +68,71 @@ namespace TargetTransport.View.DriverSction
         //    App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage());
         //}
 
-        private void WorksheetList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void WorksheetList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var data = e.SelectedItem as WorksheetListByEmployee;
-            if (data.WorksheetStatus == 1)
+            if (IsBusy)
             {
-                var WorksheetId = data.Id;
-                var VehicleId = data.VehicleId;
-                Settings.VehicleID = VehicleId;
-                Settings.WorksheetID = WorksheetId;
-                //Settings.PreviousWorksheetID = WorksheetId;
-                Settings.CompanyId = data.ComapnyId;
-                Settings.RegoNo = data.Rego;
-                App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
+                return;
             }
-            else
+            IsBusy = true;
+            try
             {
-                DisplayAlert("Info", "This WorkSheet Is Already Signed off !","Ok");
+
+                var IsSelected = await DisplayAlert("Alert!", "Do you want to Start Your Work Now?", "Yes", "No");
+                if (IsSelected)
+                {
+                    var data = e.SelectedItem as WorksheetListByEmployee;
+                    if (data.WorksheetStatus == 1)
+                    {
+                        var WorksheetId = data.Id;
+                        var VehicleId = data.VehicleId;
+                        Settings.VehicleID = VehicleId;
+                        Settings.WorksheetID = WorksheetId;
+                        //Settings.PreviousWorksheetID = WorksheetId;
+                        Settings.CompanyId = data.ComapnyId;
+                        Settings.RegoNo = data.Rego;
+                        _objDriverActualStartAndEndTimeRequest = new DriverActualStartAndEndTimeRequest()
+                        {
+                            WorkDate = data.WorkSheetDate,
+                            ProgramStartTime = data.ProgramStartTime,
+                            ApprovedStartTime = data.StartTime,
+                            ActualStartTime = DateTime.Now,
+                            StartTime = data.StartTime,
+                            WorksheetId = WorksheetId,
+                            EmployeeId = Settings.UserId
+                        };
+                        _objDriverActualStartAndEndTimeResponse = await _apiServices.DriverActualStartAndEndTimeAsync(new Get_API_Url().CommonBaseApi(_baseUrlDriverActualStartAndEndTime), true, _objHeaderModel, _objDriverActualStartAndEndTimeRequest);
+                        var Result = _objDriverActualStartAndEndTimeResponse.Response;
+                        if (Result.StatusCode == 200)
+                        {
+                            DependencyService.Get<IToast>().Show("Your Actual Time Starts Now keep going!");
+                            await App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
+                        }
+                        else
+                        {
+                            DependencyService.Get<IToast>().Show("Server Error!");
+                        }
+
+                    }
+                    else
+                    {
+                        await DisplayAlert("Info", "This WorkSheet Is Already Signed off !", "Ok");
+                    }
+
+                }
+                else
+                {
+                    return;
+                }
             }
-           
+            catch(Exception ex)
+            {
+                var msg = ex.Message;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async void LoadPageData()

@@ -46,6 +46,7 @@
     <Compile Include="Models\RequestModels\DriverRequest\AddWorkSheetRequestModel.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\ChnagePasswordRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\DeleteLoadRequest.cs" />
+    <Compile Include="Models\RequestModels\DriverRequest\DriverActualStartAndEndTimeRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\DriverWorkSheetListRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\Driver_AddLoadRequest.cs" />
     <Compile Include="Models\RequestModels\DriverRequest\Driver_AddMaintananceRequest.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Models\ResponseModels\DriverResponse\AddWorksheetResponseModel.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\ChangePaswwordResponse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\DeleteLoadResponse.cs" />
+    <Compile Include="Models\ResponseModels\DriverResponse\DriverActualStartAndEndTimeResponse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\DriverSelectVehicleResonse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\DriverWorkSheetListResponse.cs" />
     <Compile Include="Models\ResponseModels\DriverResponse\Driver_AddLoadResponse.cs" />

@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
               xmlns:TTcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="TargetTransport.View.DriverSction.EndShiftPage">
     <ContentPage.Content>
         <Grid x:Name="RootLayout">
@@ -61,7 +62,7 @@
                         Text="Submit"
                         BorderColor="#F07430" 
                         BackgroundColor="#F07430" 
-                    Clicked="btnSubmitShiftRec_Clicked"
+                     Clicked="btnSubmitShiftRec_Clicked"
                         TextColor="White"/>
             </Grid>
 
@@ -87,6 +88,7 @@
                                 TextColor="Gray"
                           ImageWidth="30"   
                            LineColor="Gray"
+                                MinimumDate="{x:Static sys:DateTime.Now}"
                                 Date="{Binding StaffDate}"
                        Unfocused="LoaddatePicker_Unfocused"
                                 IsVisible="False"

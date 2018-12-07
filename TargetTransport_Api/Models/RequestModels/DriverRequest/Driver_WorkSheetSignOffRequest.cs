@@ -11,6 +11,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         //WorkSheetID
         public string Id { get; set; }
         public string CustomerName { get; set; }
-        public string CustomerSign { get; set; }
+        public string CustomerSign { get; set; }           
+        public TimeSpan OffSiteFinishTime { get; set; }
     }
 }

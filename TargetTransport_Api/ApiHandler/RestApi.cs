@@ -283,7 +283,42 @@ namespace TargetTransport_Api.ApiHandler
             }
 
         }
-       
+
+        public async Task<DriverActualStartAndEndTimeResponse> DriverActualStartAndEndTimeAsync(string uri, Boolean IsHeaderRequired, HeaderModel objHeaderModel, DriverActualStartAndEndTimeRequest _objDriverActualStartAndEndTimeRequest)
+        {
+
+            DriverActualStartAndEndTimeResponse objDriverActualStartAndEndTimeResponse;
+            string s = JsonConvert.SerializeObject(_objDriverActualStartAndEndTimeRequest);
+            HttpResponseMessage response = null;
+            using (var stringContent = new StringContent(s, System.Text.Encoding.UTF8, "application/json"))
+            {
+
+                if (IsHeaderRequired)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", objHeaderModel.TokenCode);
+
+                }
+                response = await client.PostAsync(uri, stringContent);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var SucessResponse = await response.Content.ReadAsStringAsync();
+                    objDriverActualStartAndEndTimeResponse = JsonConvert.DeserializeObject<DriverActualStartAndEndTimeResponse>(SucessResponse);
+                    return objDriverActualStartAndEndTimeResponse;
+                }
+                else
+                {
+                    var ErrorResponse = await response.Content.ReadAsStringAsync();
+                    objDriverActualStartAndEndTimeResponse = JsonConvert.DeserializeObject<DriverActualStartAndEndTimeResponse>(ErrorResponse);
+                    return objDriverActualStartAndEndTimeResponse;
+                }
+            }
+        }
+
+
+
+
         /// <summary>
         /// Worksheet List Api
         /// </summary>

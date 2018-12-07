@@ -28,6 +28,7 @@ namespace TargetTransport
         private HeaderModel _objHeaderModel;
         private string _baseUrl;
         private RestApi _apiServices;
+        private TimeSpan OffsiteTime;
         #endregion
         public WorksheetSignOffPopUp()
         {
@@ -77,7 +78,8 @@ namespace TargetTransport
                     {
                         Id = Settings.WorksheetID.ToString(),
                         CustomerName = custName.Text,
-                        CustomerSign = imageBase64
+                        CustomerSign = imageBase64,
+                        OffSiteFinishTime = OffsiteTime
                     };
                     await Navigation.PushPopupAsync(new LoadingPopPage());
                     _objDriver_WorkSheetSignOffResponse = await _apiServices.WorkSheetSignOffSignAsync(new Get_API_Url().WorkSheetSignOffSignApi(_baseUrl), true, _objHeaderModel, _objDriver_WorkSheetSignOffRequest);
@@ -123,6 +125,7 @@ namespace TargetTransport
             XFEntoffsetFinishTime.IsEnabled = true;
             XFEntoffsetFinishTime.Unfocus();
             XFEntoffsetFinishTime.Text = OffsetfinishTime.Time.ToString();
+            OffsiteTime = OffsetfinishTime.Time;
         }
 
         private void XFEntoffsetFinishTime_Focused(object sender, FocusEventArgs e)

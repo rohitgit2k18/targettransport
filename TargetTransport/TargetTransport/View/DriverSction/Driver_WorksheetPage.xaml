@@ -95,7 +95,11 @@
                                                     <RowDefinition Height="30"/>
                                                     <RowDefinition Height="30"/>
                                                     <RowDefinition Height="30"/>
-                                                </Grid.RowDefinitions>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="40"/>
                                                     <ColumnDefinition Width="*"/>
@@ -151,7 +155,7 @@
                                                 </Grid>
                                                 <Grid Grid.Row="5" Grid.Column="1" BackgroundColor="White">
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label Text="Job Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                        <Label Text="Driver Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                                                         <Label Text="{Binding StartTime}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                                                     </StackLayout>
                                                 </Grid>
@@ -164,8 +168,43 @@
                                                         <Label Text="{Binding WorkSheetDate}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                                                     </StackLayout>
                                                 </Grid>
-
+                                            <Grid Grid.Row="7" Grid.Column="0" BackgroundColor="White">
+                                                <Image Source="clock.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
                                             </Grid>
+                                            <Grid Grid.Row="7" Grid.Column="1" BackgroundColor="White">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Program Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                    <Label Text="{Binding ProgramStartTime}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid Grid.Row="8" Grid.Column="0" BackgroundColor="White">
+                                                <Image Source="nav.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                                            </Grid>
+                                            <Grid Grid.Row="8" Grid.Column="1" BackgroundColor="White">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Site Name:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                    <Label Text="{Binding SiteName}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid Grid.Row="9" Grid.Column="0" BackgroundColor="White">
+                                                <Image Source="nav.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                                            </Grid>
+                                            <Grid Grid.Row="9" Grid.Column="1" BackgroundColor="White">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Deliver To:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                    <Label Text="{Binding DeliverTo}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                </StackLayout>
+                                            </Grid>
+                                            <Grid Grid.Row="10" Grid.Column="0" BackgroundColor="White">
+                                                <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                                            </Grid>
+                                            <Grid Grid.Row="10" Grid.Column="1" BackgroundColor="White">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Job Description:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                    <Label Text="{Binding JobDescription}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Grid>
                                         </Frame>
                                     </Grid>
                                 </ViewCell>

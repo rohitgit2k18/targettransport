@@ -72,7 +72,7 @@ namespace TargetTransport_Api.Models.ResponseModels.DriverResponse
         public string PlantId { get; set; }
         public string ProgressImage { get; set; }
         public string CompletedImage { get; set; }
-
+        public string DeliverTo { get; set; }
 
         //public int Id { get; set; }
         //public DateTime WorkSheetDate { get; set; }

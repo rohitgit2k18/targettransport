@@ -71,12 +71,36 @@ namespace TargetTransport.View.DriverSction
                         {
                             foreach(var Items in _objDriver_TimeSheetResponse.Response.WorkTimeList)
                             {
-                                Items.ProgramStartTimeBinding = Items.ProgramStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
-                                Items.ApprovedStartTimeBinding = Items.ApprovedStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
-                                Items.StartTimeBinding = Items.StartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
-                                Items.EndTimeBinding = Items.EndTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
-                                Items.WorkDateBinding = Items.WorkDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
-                                Items.EndDateBinding = Items.EndDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                                if(Items.ProgramStartTime!=null)
+                                {
+                                    Items.ProgramStartTimeBinding = Items.ProgramStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+
+                                }
+                                if(Items.ApprovedStartTime!=null)
+                                {
+                                    Items.ApprovedStartTimeBinding = Items.ApprovedStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+
+                                }
+                                if (Items.StartTime != null)
+                                {
+                                    Items.StartTimeBinding = Items.StartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+
+                                }
+                                    if(Items.EndTime != null)
+                                {
+                                    Items.EndTimeBinding = Items.EndTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+
+                                }
+                                    if(Items.WorkDate!=null)
+                                {
+                                    Items.WorkDateBinding = Items.WorkDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+
+                                }
+                                if (Items.EndDate != null)
+                                {
+                                    Items.EndDateBinding = Items.EndDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+
+                                }
                                 Items.TotalHrs.ToString();
                             }
                             TimeSheetList.ItemsSource = _objDriver_TimeSheetResponse.Response.WorkTimeList;

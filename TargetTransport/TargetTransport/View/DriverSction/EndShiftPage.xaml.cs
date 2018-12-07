@@ -24,8 +24,11 @@ namespace TargetTransport.View.DriverSction
         #region Variable Declaration
         private Driver_EndOfShiftResponse _objDriver_EndOfShiftResponse;
         private Driver_EndOfShiftRequest _objDriver_EndOfShiftRequest;
+        private DriverActualStartAndEndTimeRequest _objDriverActualStartAndEndTimeRequest;
+        private DriverActualStartAndEndTimeResponse _objDriverActualStartAndEndTimeResponse;
         private HeaderModel _objHeaderModel;
         private string _baseUrl;
+        private string _baseUrlDriverActualStartAndEndTime;
         private DailyEntryViewModel _objDailyEntryViewModel;
         private RestApi _apiServices;
         #endregion
@@ -42,10 +45,12 @@ namespace TargetTransport.View.DriverSction
             RadioButtonBinding();
             _apiServices = new RestApi();
             _objDriver_EndOfShiftResponse = new Driver_EndOfShiftResponse();
+            _objDriverActualStartAndEndTimeResponse = new DriverActualStartAndEndTimeResponse();
             _objHeaderModel = new HeaderModel();
             _baseUrl = Settings.Url + Domain.Driver_EndOfShiftApiConstant;
-           
-            
+            _baseUrlDriverActualStartAndEndTime = Settings.Url + Domain.DriverActualStartAndEndTimeApiConstant;
+
+
         }
         protected override void OnAppearing()
         {
@@ -92,7 +97,26 @@ namespace TargetTransport.View.DriverSction
                         _objDriver_EndOfShiftResponse = await _apiServices.Driver_EndOfShiftAsync(new Get_API_Url().Driver_AddMaintananceApi(_baseUrl), true, _objHeaderModel, _objDriver_EndOfShiftRequest);
                         if (_objDriver_EndOfShiftResponse.Response.StatusCode == 200)
                         {
-                            DependencyService.Get<IToast>().Show(_objDriver_EndOfShiftResponse.Response.Message);
+                            _objDriverActualStartAndEndTimeRequest = new DriverActualStartAndEndTimeRequest()
+                            {
+                                EndDate = LoaddatePicker.Date,
+                                EndTime= ClaimminutesTPicker.Time.ToString(),
+                                WorksheetId = Settings.WorksheetID,
+                                EmployeeId = Settings.UserId,
+                                WorkDate= LoaddatePicker.Date
+                            };
+                            _objDriverActualStartAndEndTimeResponse = await _apiServices.DriverActualStartAndEndTimeAsync(new Get_API_Url().CommonBaseApi(_baseUrlDriverActualStartAndEndTime), true, _objHeaderModel, _objDriverActualStartAndEndTimeRequest);
+                            var Result = _objDriverActualStartAndEndTimeResponse.Response;
+                            if (Result.StatusCode == 200)
+                            {
+                                DependencyService.Get<IToast>().Show("Your Actual End Time Completed!");
+                                await App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
+                            }
+                            else
+                            {
+                                DependencyService.Get<IToast>().Show("Server Error!");
+                            }
+                           // DependencyService.Get<IToast>().Show(_objDriver_EndOfShiftResponse.Response.Message);
                             await Navigation.PopAllPopupAsync();
                         }
                         else
