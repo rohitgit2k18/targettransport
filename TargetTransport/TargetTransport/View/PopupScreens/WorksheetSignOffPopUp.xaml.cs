@@ -71,7 +71,9 @@ namespace TargetTransport
                 String imageBase64;
                 Stream image = await padView.GetImageStreamAsync(SignaturePad.Forms.SignatureImageFormat.Jpeg, Color.Black, Color.White, 1f);
                 _objHeaderModel.TokenCode = Settings.TokenCode;
-                if (image != null)
+                string CustomerName = custName.Text;
+                
+                if (image != null && !string.IsNullOrEmpty(CustomerName) && OffsiteTime!=null)
                 {
                     imageBase64 = Base64Extensions.ConvertToBase64(image);
                     _objDriver_WorkSheetSignOffRequest = new Driver_WorkSheetSignOffRequest
@@ -81,6 +83,7 @@ namespace TargetTransport
                         CustomerSign = imageBase64,
                         OffSiteFinishTime = OffsiteTime
                     };
+
                     await Navigation.PushPopupAsync(new LoadingPopPage());
                     _objDriver_WorkSheetSignOffResponse = await _apiServices.WorkSheetSignOffSignAsync(new Get_API_Url().WorkSheetSignOffSignApi(_baseUrl), true, _objHeaderModel, _objDriver_WorkSheetSignOffRequest);
                     if (_objDriver_WorkSheetSignOffResponse.Response.StatusCode == 200)

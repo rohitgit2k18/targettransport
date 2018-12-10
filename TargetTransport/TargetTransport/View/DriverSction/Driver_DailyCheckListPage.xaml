@@ -256,7 +256,7 @@
                                 </Grid>
                                 <Grid Grid.Row="1" Margin="10,5,10,5">
 
-                                    <Entry x:Name="txttimimnggs" Placeholder="Engine Hours" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+                                    <Entry x:Name="txtEnginehours" Placeholder="Engine Hours" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
 
                                 </Grid>
                             </Grid>

@@ -108,6 +108,10 @@ namespace TargetTransport.View.DriverSction
                             DependencyService.Get<IToast>().Show("Your Actual Time Starts Now keep going!");
                             await App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
                         }
+                        else if(Result.StatusCode == 203)
+                        {
+                            await App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
+                        }
                         else
                         {
                             DependencyService.Get<IToast>().Show("Server Error!");

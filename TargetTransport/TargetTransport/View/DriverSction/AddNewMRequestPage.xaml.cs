@@ -110,8 +110,8 @@ namespace TargetTransport.View.DriverSction
                 }
                 _mediaFile = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
                 {
-                    //PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
-                    //CompressionQuality = 92
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                    CompressionQuality = 92
 
                 });
 

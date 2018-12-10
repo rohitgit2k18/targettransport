@@ -261,7 +261,7 @@ namespace TargetTransport.View.DriverSction
                 {
                     _objAddWorksheetRequestModel.EmployeeId = Settings.UserId;
                     _objAddWorksheetRequestModel.EmployeeName = Settings.Name;
-                    _objAddWorksheetRequestModel.StartTime = DateTime.Now.ToString();
+                   // _objAddWorksheetRequestModel.StartTime = DateTime.Now.ToString();
                     _objAddWorksheetRequestModel.ComapnyId = Settings.CompanyId;
                     _objAddWorksheetRequestModel.AssignTo = 4;
                     _objAddWorksheetRequestModel.CreatedOn = DateTime.Now;

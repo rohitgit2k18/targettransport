@@ -110,7 +110,7 @@ namespace TargetTransport.View.DriverSction
                             if (Result.StatusCode == 200)
                             {
                                 DependencyService.Get<IToast>().Show("Your Actual End Time Completed!");
-                                await App.NavigationPage.Navigation.PushAsync(new Driver_DailyCheckListPage(Settings.WorksheetID, Settings.VehicleID));
+                                await App.NavigationPage.Navigation.PushAsync(new Driver_HomePage());
                             }
                             else
                             {

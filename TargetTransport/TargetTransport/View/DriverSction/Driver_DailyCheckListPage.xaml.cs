@@ -97,6 +97,8 @@ namespace TargetTransport.View.DriverSction
                     CreatedBy = Settings.UserId.ToString(),
                     Comments = Comments,
                     QuestionChecelist = SelectedRadioIds,
+                    EngineHrs= txtEnginehours.Text,
+                    Odometer= txtOdometer.Text,
                     SelectChecklist = SelecetedCheckIds
                 };
                 if(string.IsNullOrEmpty(SelecetedCheckIds) || string.IsNullOrEmpty(SelectedRadioIds))

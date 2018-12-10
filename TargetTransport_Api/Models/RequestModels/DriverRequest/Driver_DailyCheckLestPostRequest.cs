@@ -15,5 +15,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public string QuestionChecelist { get; set; }
         public string Comments { get; set; }
         public string CreatedBy { get; set; }
+        public string EngineHrs { get; set; }
+        public string Odometer { get; set; }
     }
 }
