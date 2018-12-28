@@ -13,7 +13,8 @@ namespace TargetTransport.Models
           
             get
             {
-                 return "http://180.151.232.92:99/";
+                //  return "http://180.151.232.92:99/";
+                return "http://122.201.126.201/plesk-site-preview/api.adds.net.au/";
                
             }
         }

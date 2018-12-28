@@ -123,6 +123,7 @@ namespace TargetTransport.View.DriverSction
             catch(Exception ex)
             {
                 var msg = ex.Message;
+                await Navigation.PopAllPopupAsync();
             }
         }
 

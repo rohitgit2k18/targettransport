@@ -51,7 +51,7 @@ public string Model { get; set; }
 public int VehicleType { get; set; }
 public string Capacity { get; set; }
 public string Rego { get; set; }
-public object FleetNumber { get; set; }
+public string FleetNumber { get; set; }
 public DateTime RegoExpires { get; set; }
 public DateTime COIExpires { get; set; }
 public int CheckListId { get; set; }
@@ -94,7 +94,10 @@ public string ChecklistName { get; set; }
 public object ScheduelName { get; set; }
 public object EmployeeId { get; set; }
 public List<ClientFleetNumberMapping> ClientFleetNumberMapping { get; set; }
-}
+        public bool CheckVehcileFleetExit { get; set; }
+        public bool CheckWaitTimeRateExit { get; set; }
+        public bool CheckHourlyRateExit { get; set; }        
+    }
 
 public class TollList
 {
@@ -126,26 +129,26 @@ public class WorksheetDetails
 {
    
 public int Id { get; set; }
-public DateTime WorkSheetDate { get; set; }
-        public string WorkSheetDateBD { get; set; }
+public DateTime? WorkSheetDate { get; set; }
+public string WorkSheetDateBD { get; set; }
 public string StartTime { get; set; }
 public string ProgramStartTime { get; set; }
-public object JobNumber { get; set; }
-public int ClientId { get; set; }
-public int SiteId { get; set; }
-public int JobKMs { get; set; }
-public int AssignTo { get; set; }
-public int EmployeeId { get; set; }
+public string JobNumber { get; set; }
+public int? ClientId { get; set; }
+public int? SiteId { get; set; }
+public int? JobKMs { get; set; }
+public int? AssignTo { get; set; }
+public int? EmployeeId { get; set; }
 public string VehicleRego { get; set; }
 public string Attachment { get; set; }
-public int LoadTypeName { get; set; }
+public int? LoadTypeName { get; set; }
 public string JobDescription { get; set; }
-public int Createdby { get; set; }
-public DateTime CreatedOn { get; set; }
-public int ComapnyId { get; set; }
+public int? Createdby { get; set; }
+public DateTime? CreatedOn { get; set; }
+public int? ComapnyId { get; set; }
 public string WorksheetStatus { get; set; }
 public object Fleet { get; set; }
-public int LoadId { get; set; }
+public int? LoadId { get; set; }
 public VehicleEntity VehicleEntity { get; set; }
 public string SiteName { get; set; }
 public string ClientName { get; set; }
@@ -161,9 +164,56 @@ public double TotalTollAmount { get; set; }
 public string EmployeeName { get; set; }
 public bool Approval { get; set; }
 public object ShiftName { get; set; }
-public object PlantId { get; set; }
+public string PlantId { get; set; }
 public object CustomerSign { get; set; }
 public string SiteOffSite { get; set; }
+public string DeliverTo { get; set; }
+public object PrimarySiteContacetId { get; set; }
+public object TotalKms { get; set; }
+public object CustomerNameSignOff { get; set; }
+
+        //public int Id { get; set; }
+        //public DateTime WorkSheetDate { get; set; }
+        //public string StartTime { get; set; }
+        //public string ProgramStartTime { get; set; }
+        //public string JobNumber { get; set; }
+        //public int ClientId { get; set; }
+        //public int SiteId { get; set; }
+        //public int JobKMs { get; set; }
+        //public int AssignTo { get; set; }
+        //public int EmployeeId { get; set; }
+        //public string VehicleRego { get; set; }
+        //public string Attachment { get; set; }
+        //public int LoadTypeName { get; set; }
+        //public string JobDescription { get; set; }
+        //public int Createdby { get; set; }
+        //public DateTime CreatedOn { get; set; }
+        //public int ComapnyId { get; set; }
+        //public string WorksheetStatus { get; set; }
+        //public object Fleet { get; set; }
+        //public int LoadId { get; set; }
+        //public VehicleEntity VehicleEntity { get; set; }
+        //public object DeliverTo { get; set; }
+        //public string SiteName { get; set; }
+        //public string SiteOffSite { get; set; }
+        //public string ClientName { get; set; }
+        //public string ProgrammedStartTime { get; set; }
+        //public string OffSiteFinishTime { get; set; }
+        //public double TotalHourlyHire { get; set; }
+        //public double TotalWaitTimePlant { get; set; }
+        //public double TotalWaitTimeOnSite { get; set; }
+        //public string WorksheetNumber { get; set; }
+        //public object LoadData { get; set; }
+        //public List<TollList> TollList { get; set; }
+        //public double TotalTollAmount { get; set; }
+        //public string EmployeeName { get; set; }
+        //public bool Approval { get; set; }
+        //public object ShiftName { get; set; }
+        //public string PlantId { get; set; }
+        //public object CustomerSign { get; set; }
+        //public object PrimarySiteContacetId { get; set; }
+        //public object TotalKms { get; set; }
+        //public object CustomerNameSignOff { get; set; }
     }
 
 public class Toll
@@ -197,34 +247,44 @@ public class AllLoadList
   
 public int LoadId { get; set; }
 public int WorkSheetId { get; set; }
-public DateTime LoadingDate { get; set; }
-public object LoadFrom { get; set; }
+public DateTime? LoadingDate { get; set; }
+public string LoadFrom { get; set; }
 public string DeliverTo { get; set; }
 public string BridgeDocket { get; set; }
-public double NetWeight { get; set; }
-public double KiloMeters { get; set; }
+public double? NetWeight { get; set; }
+public double? KiloMeters { get; set; }
 public object KiloStart { get; set; }
 public object KiloEnd { get; set; }
 public string StartDeport { get; set; }
 public string DepartDeport { get; set; }
-public double WaitTimePerMinute { get; set; }
+public double? WaitTimePerMinute { get; set; }
 public string ArriveJob { get; set; }
 public string DepartJob { get; set; }
-public double WaitTimePerMinuteJob { get; set; }
+public double? WaitTimePerMinuteJob { get; set; }
 public object TollId { get; set; }
 public string JobType { get; set; }
 public string Start { get; set; }
 public string Finish { get; set; }
-public double Total { get; set; }
+public double? Total { get; set; }
 public string CustomerSign { get; set; }
 public object TollIds { get; set; }
 public List<Toll> Tolls { get; set; }
-public double TotalTollAmount { get; set; }
-public int CompanyId { get; set; }
-public int TotalTolls { get; set; }
-public int EmployeeId { get; set; }
+public double? TotalTollAmount { get; set; }
+public int? CompanyId { get; set; }
+public int? TotalTolls { get; set; }
+public int? EmployeeId { get; set; }
 public string Comments { get; set; }
-}
+        public double? WaitTimePerMinuteRate { get; set; }
+        public object WaitTimePerMinuteTotalRate { get; set; }
+        public double? WaitTimePerMinuteJobRate { get; set; }
+        public object WaitTimePerMinuteJobTotalRate { get; set; }
+        public double? PerKmRate { get; set; }
+        public object TotalKmRate { get; set; }
+        public object AllTotalAmount { get; set; }
+        public object CurrentLoadTotalTime { get; set; }
+
+       
+    }
 
 public class WorksheetDetailResponse
     {

@@ -142,7 +142,12 @@ namespace TargetTransport.View.NonDriverSection
 
         private void btnSubmitShiftRec_Clicked(object sender, EventArgs e)
         {
-            var startDate = Entryselect_date.Text;
+            if (LoaddatePicker.Date != null)
+            {
+                var startDate = LoaddatePicker.Date.ToString("MM/dd/yyyy HH:mm:ss");
+                //var _startDate = DateTime.Parse(startDate);
+                _objDriver_EndOfShiftRequest.StaffDate = startDate;
+            }
             var starTime = Entryclaim_minutes.Text;
             var fuelAdded = Entryfuel_added.Text;
             var odometer = EntryOdometer.Text;
@@ -152,7 +157,7 @@ namespace TargetTransport.View.NonDriverSection
             var radioSelectedItem = RadioTyreCheck.SelectedItem as DailyEntryRadio;
             var tyreChecked = radioSelectedItem.Name;
             var comments = EntryComments.Text;
-            _objDriver_EndOfShiftRequest.StaffDate = startDate;
+          //  _objDriver_EndOfShiftRequest.StaffDate = startDate;
             _objDriver_EndOfShiftRequest.StaffTime = starTime;
             _objDriver_EndOfShiftRequest.FuelAdded = fuelAdded;
             _objDriver_EndOfShiftRequest.Odometer = odometer;

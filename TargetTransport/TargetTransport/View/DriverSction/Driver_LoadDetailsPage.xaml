@@ -340,19 +340,19 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
-                                <ctrls:CheckBox 
+                                <!--<ctrls:CheckBox 
                                 Checked="False"                                                                
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"
                                 ShowLabel="True"                                                               
                                 OnImg="ck1.png"
-                                OffImg="ck2.png"  />
+                                OffImg="ck2.png"  />-->
                             </Grid>
                             <Grid Grid.Column="1">
-                                <Label Text="Copy this for a new Load?" 
+                                <!--<Label Text="Copy this for a new Load?" 
                                        TextColor="Gray" 
                                        FontSize="Medium"
-                                       VerticalOptions="Center"/>
+                                       VerticalOptions="Center"/>-->
                             </Grid>
                         </Grid>
                     </Grid>

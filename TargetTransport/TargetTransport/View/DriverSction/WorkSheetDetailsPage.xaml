@@ -55,6 +55,8 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40"/>
@@ -111,7 +113,7 @@
                     </Grid>
                     <Grid Grid.Row="5" Grid.Column="1" BackgroundColor="White">
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Job Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="Program Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                             <Label Text="{Binding ProgramStartTime}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                         </StackLayout>
                     </Grid>
@@ -135,18 +137,45 @@
                         </StackLayout>
                     </Grid>
                     <Grid Grid.Row="8" Grid.Column="0" BackgroundColor="White">
-                        <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                        <Image Source="nav.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
                     </Grid>
                     <Grid Grid.Row="8" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Deliver To:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="{Binding DeliverTo}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="9" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="clock.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="9" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Approved Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="{Binding StartTime}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="10" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="nav.png" VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="10" Grid.Column="1" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Plant ID:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                            <Label Text="{Binding PlantId}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                        </StackLayout>
+                    </Grid>
+                    <Grid Grid.Row="11" Grid.Column="0" BackgroundColor="White">
+                        <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
+                    </Grid>
+                    <Grid Grid.Row="11" Grid.Column="1" BackgroundColor="White">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Attachment:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                             <Label Text="{Binding Attachment}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                         </StackLayout>
                     </Grid>
-                    <Grid Grid.Row="9" Grid.Column="0" BackgroundColor="White">
+                    <Grid Grid.Row="12" Grid.Column="0" BackgroundColor="White">
                         <Image Source="list.png" VerticalOptions="Center"  HorizontalOptions="Center" MinimumHeightRequest="30" MinimumWidthRequest="30"/>
                     </Grid>
-                    <Grid Grid.Row="9" Grid.Column="1" BackgroundColor="White">
+                    <Grid Grid.Row="12" Grid.Column="1" BackgroundColor="White">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="JOB Description:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                             <Label Text="{Binding JobDescription}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>

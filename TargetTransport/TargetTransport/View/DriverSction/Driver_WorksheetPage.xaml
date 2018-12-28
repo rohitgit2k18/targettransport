@@ -155,7 +155,7 @@
                                                 </Grid>
                                                 <Grid Grid.Row="5" Grid.Column="1" BackgroundColor="White">
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label Text="Driver Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
+                                                        <Label Text="Approved Start Time:" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                                                         <Label Text="{Binding StartTime}" VerticalOptions="Center" FontSize="Small" TextColor="Gray"/>
                                                     </StackLayout>
                                                 </Grid>

@@ -89,7 +89,7 @@
                           ImageWidth="30"   
                            LineColor="Gray"
                                 MinimumDate="{x:Static sys:DateTime.Now}"
-                                Date="{Binding StaffDate}"
+                                Format="MM-dd-yyyy"                                                                
                        Unfocused="LoaddatePicker_Unfocused"
                                 IsVisible="False"
                         HorizontalOptions="FillAndExpand"/>
