@@ -9,6 +9,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
   public  class Driver_EndOfShiftRequest
     {
         public string StaffDate { get; set; }
+        public string Staff_Date { get; set; }
         public string StaffTime { get; set; }
         public string Odometer { get; set; }
         public string FuelAdded { get; set; }

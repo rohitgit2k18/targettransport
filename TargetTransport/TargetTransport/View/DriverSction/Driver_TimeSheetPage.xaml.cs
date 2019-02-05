@@ -73,32 +73,51 @@ namespace TargetTransport.View.DriverSction
                             {
                                 if(Items.ProgramStartTime!=null)
                                 {
-                                    Items.ProgramStartTimeBinding = Items.ProgramStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+                                   // var tIME = TimeSpan.FromTicks(Items.ProgramStartTime.Value.TimeOfDay);
+                                    var PST = Items.ProgramStartTime;
+                                    Items.ProgramStartTimeBinding = PST.Value.ToString("hh:mm tt");
+                                   // var BPST = DateTime.ParseExact(PST, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                                  //  Items.ProgramStartTimeBinding = BPST.ToString("hh:mm tt");
 
                                 }
                                 if(Items.ApprovedStartTime!=null)
                                 {
-                                    Items.ApprovedStartTimeBinding = Items.ApprovedStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+                                    var AST = Items.ApprovedStartTime;
+                                    //var BAST = DateTime.ParseExact(AST, "HH:mm tt", CultureInfo.InvariantCulture);
+                                    Items.ApprovedStartTimeBinding = AST.Value.ToString("hh:mm tt");
+                                    // Items.ApprovedStartTimeBinding = Items.ApprovedStartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
 
                                 }
                                 if (Items.StartTime != null)
                                 {
-                                    Items.StartTimeBinding = Items.StartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+                                    var ST = Items.StartTime;
+                                   // var BST = DateTime.ParseExact(ST, "HH:mm tt", CultureInfo.InvariantCulture);
+                                    Items.StartTimeBinding = ST.Value.ToString("hh:mm tt");
+                                    //Items.StartTimeBinding = Items.StartTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
 
                                 }
                                     if(Items.EndTime != null)
                                 {
-                                    Items.EndTimeBinding = Items.EndTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
+                                    var ET = Items.EndTime;
+                                    //var BET = DateTime.ParseExact(ET, "HH:mm tt", CultureInfo.InvariantCulture);
+                                    Items.EndTimeBinding = ET.Value.ToString("hh:mm tt");
+                                    // Items.EndTimeBinding = Items.EndTime.ToString("HH:mm tt", CultureInfo.InvariantCulture);
 
                                 }
                                     if(Items.WorkDate!=null)
                                 {
-                                    Items.WorkDateBinding = Items.WorkDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                                    var WD = Items.WorkDate;
+                                   // var BWD = DateTime.ParseExact(WD, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                                    Items.WorkDateBinding = WD.Value.ToString("dd-MMM-yyyy");
+                                    // Items.WorkDateBinding = Items.WorkDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
 
                                 }
                                 if (Items.EndDate != null)
                                 {
-                                    Items.EndDateBinding = Items.EndDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                                    var ED = Items.EndDate;
+                                   // var BED = DateTime.ParseExact(ED, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+                                    Items.EndDateBinding = ED.Value.ToString("dd-MMM-yyyy");
+                                    // Items.EndDateBinding = Items.EndDate.ToString("dd-MMM-yyyy", CultureInfo.InvariantCulture);
 
                                 }
                                 Items.TotalHrs.ToString();

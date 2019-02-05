@@ -3,6 +3,7 @@ using Plugin.Connectivity;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,18 +94,24 @@ namespace TargetTransport.View.DriverSction
                     else
                     {
                         _objHeaderModel.TokenCode = Settings.TokenCode;
+                        _objDriver_EndOfShiftRequest.Staff_Date = _objDriver_EndOfShiftRequest.StaffDate;
                         await Navigation.PushPopupAsync(new LoadingPopPage());
                         _objDriver_EndOfShiftResponse = await _apiServices.Driver_EndOfShiftAsync(new Get_API_Url().Driver_AddMaintananceApi(_baseUrl), true, _objHeaderModel, _objDriver_EndOfShiftRequest);
                         if (_objDriver_EndOfShiftResponse.Response.StatusCode == 200)
                         {
-                            _objDriverActualStartAndEndTimeRequest = new DriverActualStartAndEndTimeRequest()
-                            {
-                                EndDate = LoaddatePicker.Date,
-                                EndTime= ClaimminutesTPicker.Time.ToString(),
-                                WorksheetId = Settings.WorksheetID,
-                                EmployeeId = Settings.UserId,
-                                WorkDate= LoaddatePicker.Date
-                            };
+                            var _enddate = LoaddatePicker.Date.ToString("MM/dd/yyyy HH:mm:ss");
+                            var _endTime = ClaimminutesTPicker.Time;
+                            _objDriverActualStartAndEndTimeRequest = new DriverActualStartAndEndTimeRequest();
+
+                            _objDriverActualStartAndEndTimeRequest.EndDate = DateTime.ParseExact(_enddate, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                              var _endTimeDate = DateTime.Now.Date;
+                              var TimeDate = _endTimeDate.Add(_endTime).ToString("MM/dd/yyyy HH:mm:ss");
+
+                            _objDriverActualStartAndEndTimeRequest.EndTime = DateTime.ParseExact(TimeDate, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+                            _objDriverActualStartAndEndTimeRequest.WorksheetId = Settings.WorksheetID;
+                            _objDriverActualStartAndEndTimeRequest.EmployeeId = Settings.UserId;
+                           // _objDriverActualStartAndEndTimeRequest.WorkDate = DateTime.ParseExact(_enddate, _enddate, CultureInfo.InvariantCulture);
+                            
                             _objDriverActualStartAndEndTimeResponse = await _apiServices.DriverActualStartAndEndTimeAsync(new Get_API_Url().CommonBaseApi(_baseUrlDriverActualStartAndEndTime), true, _objHeaderModel, _objDriverActualStartAndEndTimeRequest);
                             var Result = _objDriverActualStartAndEndTimeResponse.Response;
                             if (Result.StatusCode == 200)
@@ -172,7 +179,7 @@ namespace TargetTransport.View.DriverSction
         {
             if (LoaddatePicker.Date != null)
             {
-                var startDate = LoaddatePicker.Date.ToString("MM-dd-yyyy");
+                var startDate = LoaddatePicker.Date.ToString("MM/dd/yyyy HH:mm:ss");
                // var _startDate = DateTime.Parse(startDate);
                 _objDriver_EndOfShiftRequest.StaffDate = startDate;
             }            

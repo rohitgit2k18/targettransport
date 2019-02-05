@@ -54,6 +54,9 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" MinimumHeightRequest="40" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
@@ -107,9 +110,7 @@
                         HorizontalOptions="FillAndExpand"/>
                         </Grid>
                        
-                       
-
-                       
+                                              
                         <Grid Grid.Row="3" MinimumHeightRequest="40" BackgroundColor="White">
                             <TTcontrols:ImageTimePicker 
                                 x:Name="claim_minutes"
@@ -127,7 +128,7 @@
                            Image="claim_minutes"                        
                          PlaceholderColor="LightGray"
                           x:Name="Entryclaim_minutes"
-                          Placeholder="Job Start Time" 
+                          Placeholder="Approved Start Time" 
                          ImageHeight="35"
                           ImageWidth="35"   
                            LineColor="Gray"                           
@@ -136,9 +137,35 @@
                         HorizontalOptions="FillAndExpand"/>
                             
                         </Grid>
-
-
                         <Grid Grid.Row="4" MinimumHeightRequest="40" BackgroundColor="White">
+                            <TTcontrols:ImageTimePicker 
+                                x:Name="PrgramStartTime"
+                                Image="claim_minutes"
+                                 ImageHeight="35"
+                                ImageWidth="35"
+                                LineColor="Gray"
+                                TextColor="Gray"
+                                Format = "HH:mm:ss"
+                                IsVisible="False"                                                                  
+                                Unfocused="PrgramStartTime_Unfocused"
+                                HorizontalOptions="FillAndExpand"
+                                />
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="claim_minutes"                        
+                         PlaceholderColor="LightGray"
+                          x:Name="EntryPrgramStartTime"
+                          Placeholder="Program Start Time" 
+                         ImageHeight="35"
+                          ImageWidth="35"   
+                           LineColor="Gray"                           
+                            Text="{Binding ProgramStartTime}"   
+                            Focused="EntryPrgramStartTime_Focused"
+                        HorizontalOptions="FillAndExpand"/>
+
+                        </Grid>
+
+
+                        <Grid Grid.Row="5" MinimumHeightRequest="40" BackgroundColor="White">
                             <!--<TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="shift"                        
                          PlaceholderColor="LightGray"
@@ -167,7 +194,7 @@
                         </Grid>
                         
 
-                        <Grid Grid.Row="5" BackgroundColor="White">
+                        <Grid Grid.Row="6" BackgroundColor="White">
                             <TTcontrols:TwoImagePicker TextColor="Gray"  
                              x:Name="dropdownCustomerName"
                            Image="customer"   
@@ -194,7 +221,7 @@
                             
                         </Grid>
                        
-                        <Grid Grid.Row="6" BackgroundColor="White">
+                        <Grid Grid.Row="7" BackgroundColor="White">
                             <TTcontrols:TwoImagePicker TextColor="Gray"  
                              x:Name="dropdownSiteName"
                            Image="onsite"   
@@ -221,9 +248,23 @@
 
                             
                         </Grid>
-                        
 
-                        <Grid Grid.Row="7" BackgroundColor="White">
+                        <Grid Grid.Row="8" BackgroundColor="White">
+                            <TTcontrols:ImageEntry TextColor="Gray"                        
+                           Image="plant"    
+                              x:Name="XFEntDeliverto"
+                         PlaceholderColor="LightGray"
+                          Placeholder="Deliver To" 
+                         ImageHeight="35"
+                          ImageWidth="35"                              
+                           LineColor="Gray"  
+                            Text="{Binding DeliverTo}"                       
+                        HorizontalOptions="FillAndExpand"/>
+
+
+                        </Grid>
+
+                        <Grid Grid.Row="9" BackgroundColor="White">
                             <TTcontrols:ImageEntry TextColor="Gray"                        
                            Image="plant"    
                               x:Name="XFentPlantId"
@@ -239,7 +280,7 @@
                         </Grid>
 
                         
-                        <Grid Grid.Row="8" BackgroundColor="White">
+                        <Grid Grid.Row="10" BackgroundColor="White">
                             <TTcontrols:TwoImagePicker TextColor="Gray"  
                                x:Name="dropdownVehicleName"
                            Image="assign_vehicle"   
@@ -267,7 +308,7 @@
 
                            
                         </Grid>
-                        <Grid Grid.Row="9" BackgroundColor="White">
+                        <Grid Grid.Row="11" BackgroundColor="White">
                             <TTcontrols:TwoImagePicker TextColor="Gray"  
                              x:Name="dropdownLoadType"
                            Image="load_type"   
@@ -284,7 +325,13 @@
                         HorizontalOptions="FillAndExpand"/>
 
                         </Grid>
+                        <Grid Grid.Row="12" BackgroundColor="White">
+                            <ctrls:Border  CornerRadius="2" BackgroundColor="LightGray" Padding="1,1,1,1">
+                                <Entry x:Name="txtComments"  Placeholder="Job Description" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="White" PlaceholderColor="LightGray"/>
+                            </ctrls:Border>
+                        </Grid>
 
+                        
                         <!--<Grid Grid.Row="9" BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"/>

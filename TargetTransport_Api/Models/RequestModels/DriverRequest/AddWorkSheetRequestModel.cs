@@ -63,7 +63,9 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public string CustomerSign { get; set; }
         public string CustomerName { get; set; }
         public string Plantid { get; set; }
-       
+        public string DeliverTo { get; set; }
+        public string Comments { get; set; }
+
     }
     public class Toll
     {
@@ -129,8 +131,5 @@ public class TollList
 
 }
 
-public class RootObject
-{
-   
-}
+
 }

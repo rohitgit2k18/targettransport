@@ -77,6 +77,8 @@ namespace TargetTransport.View.DriverSction
             base.OnAppearing();
             claim_minutes.Time = DateTime.Now.TimeOfDay;
             claim_minutes.Format = "hh:mm";
+            PrgramStartTime.Time= DateTime.Now.TimeOfDay;
+            PrgramStartTime.Format = "hh:mm";
             LoadWorkSheetNumber();
             LoadClients();
            // LoadVehicleData();
@@ -268,9 +270,9 @@ namespace TargetTransport.View.DriverSction
                     _objAddWorksheetRequestModel.Createdby = 1;
                     _objAddWorksheetRequestModel.IsActive = true;
                     _objAddWorksheetRequestModel.WorksheetStatus = 1;
-                    if (string.IsNullOrEmpty(_objAddWorksheetRequestModel.WorkSheetNumber) ||
-                        string.IsNullOrEmpty(_objAddWorksheetRequestModel.JobDescription) ||
+                    if (string.IsNullOrEmpty(_objAddWorksheetRequestModel.WorkSheetNumber) ||                       
                         string.IsNullOrEmpty(_objAddWorksheetRequestModel.VechicleName) ||
+                        string.IsNullOrEmpty(_objAddWorksheetRequestModel.DeliverTo) ||
                         string.IsNullOrEmpty(_objAddWorksheetRequestModel.SiteName) ||
                         string.IsNullOrEmpty(_objAddWorksheetRequestModel.ClientName) ||
                          string.IsNullOrEmpty(_objAddWorksheetRequestModel.LoadTypeName)
@@ -281,7 +283,7 @@ namespace TargetTransport.View.DriverSction
                     else
                     {
                         _objHeaderModel.TokenCode = Settings.TokenCode;
-                        
+                        _objAddWorksheetRequestModel.JobDescription = _objAddWorksheetRequestModel.Comments + txtComments.Text;
                         await Navigation.PushPopupAsync(new LoadingPopPage());
                         _objAddWorksheetResponseModel = await _apiServices.AddWorkSheetAsync(new Get_API_Url().CommonBaseApi(_baseUrlAddWorkSheet), true, _objHeaderModel, _objAddWorksheetRequestModel);
                         if (_objDriver_LoadTypeResponse.Response.StatusCode == 200)
@@ -393,7 +395,8 @@ namespace TargetTransport.View.DriverSction
                 _objAddWorksheetRequestModel.SiteName = SitenameData.Name;
                 if(!string.IsNullOrEmpty(SitenameData.SiteInstructions))
                 {
-                    _objAddWorksheetRequestModel.JobDescription = SitenameData.SiteInstructions;
+                    // _objAddWorksheetRequestModel.JobDescription = SitenameData.SiteInstructions + txtComments.Text;
+                    _objAddWorksheetRequestModel.Comments = SitenameData.SiteInstructions;
                 }
                 else
                 {
@@ -421,6 +424,7 @@ namespace TargetTransport.View.DriverSction
                 if(!string.IsNullOrEmpty(SelectedVehicleData.PlantId))
                 {
                     XFentPlantId.Text = SelectedVehicleData.PlantId;
+                    _objAddWorksheetRequestModel.Plantid = SelectedVehicleData.PlantId;
                 }
                
                
@@ -447,6 +451,23 @@ namespace TargetTransport.View.DriverSction
             {
                 DependencyService.Get<IToast>().Show("please select LoadType!");
             }
+        }
+
+        private void PrgramStartTime_Unfocused(object sender, FocusEventArgs e)
+        {
+            EntryPrgramStartTime.IsEnabled = true;
+            EntryPrgramStartTime.Unfocus();
+            EntryPrgramStartTime.Text = PrgramStartTime.Time.ToString();
+        }
+
+        private void EntryPrgramStartTime_Focused(object sender, FocusEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                EntryPrgramStartTime.IsEnabled = false;
+                PrgramStartTime.Focus();
+
+            });
         }
     }
 }

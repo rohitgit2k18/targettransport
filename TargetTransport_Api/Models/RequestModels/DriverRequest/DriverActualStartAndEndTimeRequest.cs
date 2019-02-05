@@ -13,7 +13,7 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
         public string ProgramStartTime { get; set; }
         public string ApprovedStartTime { get; set; }
         public DateTime? ActualStartTime { get; set; }
-        public string EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public DateTime? EndDate { get; set; }
         public string StartTime { get; set; }
         public string BreakTime { get; set; }

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TargetTransport.View.DriverSction.Driver_TimeSheetPage"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib"
               xmlns:TTcontrols="clr-namespace:TargetTransport.CustomeControls;assembly=TargetTransport"
              BackgroundImage="bg.jpg">
     <ContentPage.Content>
@@ -66,6 +67,7 @@
                            ImageHeight="20"   
                           ImageAlignment="Left"                         
                           TextColor="White"
+                        MinimumDate="{x:Static sys:DateTime.Now}"
                         HorizontalOptions="StartAndExpand"                       
                           ImageWidth="20"   
                            LineColor="White"
@@ -78,6 +80,7 @@
                            ImageHeight="20"   
                           ImageAlignment="Left"                         
                             TextColor="White"
+                        MinimumDate="{x:Static sys:DateTime.Now}"
                           ImageWidth="20"   
                            LineColor="White"
                        />
@@ -194,7 +197,7 @@
                                             <Grid Grid.Column="0">
                                                 <StackLayout Orientation="Vertical">
                                                     <Label HorizontalOptions="Start" Text="Total Hrs:" TextColor="Gray" FontSize="Small"/>
-                                                        <Label HorizontalOptions="Start" Text="{Binding TotalHrs}" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
+                                                        <Label HorizontalOptions="Start" Text="{Binding WorkHours}" TextColor="Black" FontSize="Small" FontAttributes="Bold"/>
                                                 </StackLayout>
                                             </Grid>
                                             <Grid Grid.Column="1">

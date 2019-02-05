@@ -8,8 +8,8 @@ namespace TargetTransport_Api.Models.RequestModels.DriverRequest
 {
    public class Driver_TimeSheetRequest
     {
-        public DateTime WorkDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? WorkDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public int EmployeeId { get; set; }
     }
 }

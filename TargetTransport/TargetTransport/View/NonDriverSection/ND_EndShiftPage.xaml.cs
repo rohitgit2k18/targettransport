@@ -84,6 +84,7 @@ namespace TargetTransport.View.NonDriverSection
                     else
                     {
                         _objHeaderModel.TokenCode = Settings.TokenCode;
+                        _objDriver_EndOfShiftRequest.Staff_Date = _objDriver_EndOfShiftRequest.StaffDate;
                         await Navigation.PushPopupAsync(new LoadingPopPage());
                         _objDriver_EndOfShiftResponse = await _apiServices.Driver_EndOfShiftAsync(new Get_API_Url().Driver_AddMaintananceApi(_baseUrl), true, _objHeaderModel, _objDriver_EndOfShiftRequest);
                         if (_objDriver_EndOfShiftResponse.Response.StatusCode == 200)
